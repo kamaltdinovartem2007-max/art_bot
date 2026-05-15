@@ -1,0 +1,37 @@
+[
+    {
+        "title": "Дворец Миноса",
+        "author": "Неизвестен",
+        "image": "images/Palazzo_Minosse7.jpg",
+        "no_author": true,
+        "title_aliases": [ "Дворец Миноса", "Дворец Миносса" ]
+    },
+    {
+        "title": "Пергамский алтарь в Берлине",
+        "author": "Неизвестен",
+        "image": "images/Pergamonaltarimmesselbau2.jpg",
+        "no_author": true,
+        "title_aliases": [ "Пергамский алтарь в Берлине" ]
+    },
+    {
+        "title": "Акробаты с быком",
+        "author": "Неизвестен",
+        "image": "images/images.jpg",
+        "no_author": true,
+        "title_aliases": [ "Акробаты с быком" ]
+    },
+    {
+        "title": "Дамы в голубом",
+        "author": "Неизвестен",
+        "image": "images/YERx1RHro7A.jpg",
+        "no_author": true,
+        "title_aliases": [ "Дамы в голубом" ]
+    },
+    {
+        "title": "Парижанка",
+        "author": "Неизвестен",
+        "image": "images/imagers.jpg",
+        "no_author": true,
+        "title_aliases": [ "Парижанка" ]
+    }
+]

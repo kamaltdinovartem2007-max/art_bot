@@ -4,7 +4,7 @@
         "author": "Неизвестен",
         "image": "images/Palazzo_Minosse7.jpg",
         "no_author": true,
-        "title_aliases": [ "Дворец Миноса", "Дворец Миносса" ]
+        "title_aliases": [ "Дворец Миноса", "Дворец Миносса", "Миносский дворец" ]
     },
     {
         "title": "Пергамский алтарь в Берлине",
@@ -33,5 +33,26 @@
         "image": "images/imagers.jpg",
         "no_author": true,
         "title_aliases": [ "Парижанка" ]
+    },
+    {
+        "title": "Львиные ворота",
+        "author": "Неизвестен",
+        "image": "images/imasges.jpg",
+        "no_author": true,
+        "title_aliases": [ "Львиные ворота" ]
+    },
+    {
+        "title": "Венера Милосская",
+        "author": "Неизвестен",
+        "image": "images/загруeженное.jpg",
+        "no_author": true,
+        "title_aliases": [ "Венера Милосская", "Венера Милоская" ]
+    },
+    {
+        "title": "Лаокоон и его сыновья",
+        "author": "Неизвестен",
+        "image": "images/загружеyнное.jpg",
+        "no_author": true,
+        "title_aliases": [ "Лаокоон и его сыновья" ]
     }
 ]

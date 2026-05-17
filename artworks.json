@@ -54,5 +54,68 @@
         "image": "images/загружеyнное.jpg",
         "no_author": true,
         "title_aliases": [ "Лаокоон и его сыновья" ]
+    },
+    {
+        "title": "Аполлон Бельведерский",
+        "author": "Неизвестен",
+        "image": "images/Аполлон Бельведерский.jpg",
+        "no_author": true,
+        "title_aliases": [ "Аполлон Бельведерский" ]
+    },
+    {
+        "title": "Капитолийская волчица",
+        "author": "Неизвестен",
+        "image": "images/Капитолийская волчица.jpg",
+        "no_author": true,
+        "title_aliases": [ "Капитолийская волчица" ]
+    },
+    {
+        "title": "Ника Самофракийская",
+        "author": "Неизвестен",
+        "image": "images/Ника Самофракийская.jpg",
+        "no_author": true,
+        "title_aliases": [ "Ника Самофракийская" ]
+    },
+    {
+        "title": "Парфенон",
+        "author": "Неизвестен",
+        "image": "images/Парфенон.jpg",
+        "no_author": true,
+        "title_aliases": [ "Парфенон" ]
+    },
+    {
+        "title": "Римский форум",
+        "author": "Неизвестен",
+        "image": "images/Римский форум.jpg",
+        "no_author": true,
+        "title_aliases": [ "Римский форум" ]
+    },
+    {
+        "title": "Умирающий галл",
+        "author": "Неизвестен",
+        "image": "images/Умирающий галл.jpg",
+        "no_author": true,
+        "title_aliases": [ "Умирающий галл" ]
+    },
+    {
+        "title": "Храм Аполлона в Коринфе",
+        "author": "Неизвестен",
+        "image": "images/Храм Аполлона в Коринфе.jpg",
+        "no_author": true,
+        "title_aliases": [ "Храм Аполлона в Коринфе", "Храм Аполлона" ]
+    },
+    {
+        "title": "Храм Геры в Олимпии",
+        "author": "Неизвестен",
+        "image": "images/Храм Геры в Олимпии.jpg",
+        "no_author": true,
+        "title_aliases": [ "Храм Геры в Олимпии", "Храм Геры" ]
+    },
+    {
+        "title": "Храм Зевса Олимпийского в Афинах",
+        "author": "Неизвестен",
+        "image": "images/Храм Зевса Олимпийского в Афинах.jpg",
+        "no_author": true,
+        "title_aliases": [ "Храм Зевса Олимпийского в Афинах", "Храм Зевса Олимпийского", "Храм Зевса", "Храм Зевса в Афинах" ]
     }
 ]

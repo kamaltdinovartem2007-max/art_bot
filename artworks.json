@@ -117,5 +117,82 @@
         "image": "images/Храм Зевса Олимпийского в Афинах.jpg",
         "no_author": true,
         "title_aliases": [ "Храм Зевса Олимпийского в Афинах", "Храм Зевса Олимпийского", "Храм Зевса", "Храм Зевса в Афинах" ]
+    },
+    {
+        "title": "Афина Парфенос",
+        "author": "Неизвестен",
+        "image": "images/Афина Парфенос.jpg",
+        "no_author": true,
+        "title_aliases": [ "Афина Парфенос" ]
+    },
+    {
+        "title": "Статуя Зевса из храма в Олимпии",
+        "author": "Неизвестен",
+        "image": "images/Статуя Зевса из храма в Олимпии.jpg",
+        "no_author": true,
+        "title_aliases": [ "Статуя Зевса из храма в Олимпии", "Статуя Зевса" ]
+    },
+    {
+        "title": "Колизей",
+        "author": "Неизвестен",
+        "image": "images/Колизей.jpg",
+        "no_author": true,
+        "title_aliases": [ "Колизей" ]
+    },
+    {
+        "title": "Башня Трояна",
+        "author": "Неизвестен",
+        "image": "images/Башня Трояна.jpg",
+        "no_author": true,
+        "title_aliases": [ "Башня Трояна" ]
+    },
+    {
+        "title": "Конная статуя Марка Аврелия",
+        "author": "Неизвестен",
+        "image": "images/Конная статуя Марка Аврелия.jpg",
+        "no_author": true,
+        "title_aliases": [ "Конная статуя Марка Аврелия" ]
+    },
+    {
+        "title": "Пантеон",
+        "author": "Неизвестен",
+        "image": "images/Пантеон.jpg",
+        "no_author": true,
+        "title_aliases": [ "Пантеон" ]
+    },
+    {
+        "title": "Храм Эрехтейон",
+        "author": "Неизвестен",
+        "image": "images/Храм Эрехтейон.jpg",
+        "no_author": true,
+        "title_aliases": [ "Храм Эрехтейон", "Эрехтейон" ]
+    },
+    {
+        "title": "Коры",
+        "author": "Неизвестен",
+        "image": "images/Коры.jpg",
+        "no_author": true,
+        "title_aliases": [ "Коры","Кариатиды" ]
+    },
+    {
+        "title": "Помпеи",
+        "author": "Неизвестен",
+        "image": "images/Помпеи.jpg",
+        "no_author": true,
+        "title_aliases": [ "Помпеи" ]
+    },
+    {
+        "title": "Вилла Мистерий",
+        "author": "Неизвестен",
+        "image": "images/Вилла Мистерий.jpg",
+        "no_author": true,
+        "title_aliases": [ "Вилла Мистерий" ]
+    },
+    {
+        "title": "Дискобол",
+        "author": "Мирон",
+        "image": "images/Дискобол.jpg",
+        "title_aliases": [ "Дискобол" ],
+        "author_aliases": ["Мирон"]
     }
 ]

@@ -81,6 +81,13 @@ async def send_artwork(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ──────────────────────── COMMANDS ────────────────────────────────
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.clear()
+    await update.message.reply_text(
+        "👋 *Добро пожаловать!*\n\n"
+        "Для доступа к боту необходима подписка — *100 рублей/месяц*.\n\n"
+        "💳 Для оплаты напишите администратору: @admin\n\n"
+        "_(Функция оплаты скоро будет добавлена прямо в бот)_",
+        parse_mode="Markdown",
+    )
     await show_main_menu(update, context)
 
 async def stop(update: Update, context: ContextTypes.DEFAULT_TYPE):

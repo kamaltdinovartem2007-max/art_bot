@@ -1,10 +1,11 @@
 import os
 import random
 import json
-from telegram import Update
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     ApplicationBuilder,
     CommandHandler,
+    CallbackQueryHandler,
     MessageHandler,
     filters,
     ContextTypes,
@@ -21,6 +22,23 @@ def load_artworks() -> list[dict]:
 # ─────────────────────── NORMALISE INPUT ──────────────────────────
 def normalise(text: str) -> str:
     return text.strip().lower()
+
+# ──────────────────────── MAIN MENU ───────────────────────────────
+def main_menu_keyboard():
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton("🎨 Викторина (5 вопросов)", callback_data="quiz")],
+        [InlineKeyboardButton("🏃 Марафон (все картины)", callback_data="marathon")],
+    ])
+
+async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE, text: str = None):
+    msg = text or (
+        "🖼 *Добро пожаловать в викторину по искусству!*\n\n"
+        "Выбери режим:"
+    )
+    if update.callback_query:
+        await update.callback_query.message.reply_text(msg, parse_mode="Markdown", reply_markup=main_menu_keyboard())
+    else:
+        await update.message.reply_text(msg, parse_mode="Markdown", reply_markup=main_menu_keyboard())
 
 # ──────────────────────── HELPERS ─────────────────────────────────
 def build_question_caption(artwork: dict) -> str:
@@ -45,62 +63,90 @@ async def send_artwork(update: Update, context: ContextTypes.DEFAULT_TYPE):
     num = data["current_index"] + 1
     total = len(data["queue"])
 
-    caption = f"*Вопрос {num}/{total}*\n\n" + build_question_caption(artwork)
+    mode_label = "🏃 *Марафон*" if data.get("mode") == "marathon" else "🎨 *Викторина*"
+    caption = f"{mode_label} | Вопрос {num}/{total}\n\n" + build_question_caption(artwork)
 
     image_path = artwork.get("image")
+    target = update.callback_query.message if update.callback_query else update.effective_message
+
     if image_path and os.path.isfile(image_path):
         with open(image_path, "rb") as img:
-            await update.effective_message.reply_photo(
-                photo=img,
-                caption=caption,
-                parse_mode="Markdown",
-            )
+            await target.reply_photo(photo=img, caption=caption, parse_mode="Markdown")
     else:
-        await update.effective_message.reply_text(
+        await target.reply_text(
             f"[изображение не найдено: {image_path}]\n\n{caption}",
             parse_mode="Markdown",
         )
 
 # ──────────────────────── COMMANDS ────────────────────────────────
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    artworks = load_artworks()
-    random.shuffle(artworks)
-    quiz_size = min(5, len(artworks))
-    queue = artworks[:quiz_size]
-
-    context.user_data.update({
-        "queue": queue,
-        "current_index": 0,
-        "score": 0,
-        "waiting_answer": True,
-    })
-
-    await update.message.reply_text(
-        "🖼 *Викторина по искусству начинается!*\n\n"
-        f"Тебе покажут *{quiz_size}* произведений. "
-        "Угадай название и автора каждого.\n\n"
-        "Отвечай в формате: `Название — Автор`\n"
-        "Если автор неизвестен — пиши только название.",
-        parse_mode="Markdown",
-    )
-    await send_artwork(update, context)
-
+    context.user_data.clear()
+    await show_main_menu(update, context)
 
 async def stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data.clear()
-    await update.message.reply_text(
-        "Викторина остановлена. Напиши /start чтобы начать заново."
-    )
+    await show_main_menu(update, context, text="Викторина остановлена. Выбери режим:")
 
+# ──────────────────────── CALLBACKS ───────────────────────────────
+async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    data = context.user_data
+
+    if query.data == "quiz":
+        artworks = load_artworks()
+        random.shuffle(artworks)
+        queue = artworks[:min(5, len(artworks))]
+
+        data.update({
+            "queue": queue,
+            "current_index": 0,
+            "score": 0,
+            "waiting_answer": True,
+            "mode": "quiz",
+        })
+
+        await query.message.reply_text(
+            "🎨 *Викторина начинается!*\n\n"
+            f"Тебе покажут *{len(queue)}* произведений.\n"
+            "Угадай название и автора каждого.\n\n"
+            "Отвечай в формате: `Название — Автор`\n"
+            "Если автор неизвестен — пиши только название.\n\n"
+            "Напиши /stop чтобы выйти в меню.",
+            parse_mode="Markdown",
+        )
+        await send_artwork(update, context)
+
+    elif query.data == "marathon":
+        artworks = load_artworks()
+        random.shuffle(artworks)
+        # Марафон: все картины в рандомном порядке
+
+        data.update({
+            "queue": artworks,
+            "current_index": 0,
+            "score": 0,
+            "waiting_answer": True,
+            "mode": "marathon",
+        })
+
+        await query.message.reply_text(
+            "🏃 *Марафон начинается!*\n\n"
+            f"Всего произведений: *{len(artworks)}*\n"
+            "Они будут идти по порядку — одно за другим.\n\n"
+            "Отвечай в формате: `Название — Автор`\n"
+            "Если автор неизвестен — пиши только название.\n\n"
+            "Напиши /stop чтобы выйти в меню.",
+            parse_mode="Markdown",
+        )
+        await send_artwork(update, context)
 
 # ──────────────────────── ANSWER HANDLER ──────────────────────────
 async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
     data = context.user_data
 
     if not data.get("waiting_answer"):
-        await update.message.reply_text(
-            "Нет активной викторины. Напиши /start чтобы начать."
-        )
+        await show_main_menu(update, context, text="Нет активной викторины. Выбери режим:")
         return
 
     artwork = data["queue"][data["current_index"]]
@@ -110,8 +156,6 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
     correct_titles = [normalise(t) for t in artwork.get("title_aliases", [artwork["title"]])]
 
     if no_author:
-        # Принимаем только название, автор не нужен
-        # Берём первую часть если человек всё равно написал через тире
         separator = "—" if "—" in user_text else "-"
         parts = [p.strip() for p in user_text.split(separator, 1)]
         title_ok = parts[0] in correct_titles
@@ -175,13 +219,14 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
         data["waiting_answer"] = False
 
         emoji = "🏆" if score == total else ("👍" if score >= total // 2 else "😅")
+        mode_label = "Марафон" if data.get("mode") == "marathon" else "Викторина"
+
         await update.message.reply_text(
-            f"{emoji} *Викторина завершена!*\n\n"
-            f"Твой результат: *{score}/{total}*\n\n"
-            "Напиши /start чтобы сыграть снова.",
+            f"{emoji} *{mode_label} завершён!*\n\n"
+            f"Твой результат: *{score}/{total}*\n",
             parse_mode="Markdown",
         )
-
+        await show_main_menu(update, context, text="Выбери следующий режим:")
 
 # ────────────────────────── MAIN ──────────────────────────────────
 def main():
@@ -189,6 +234,7 @@ def main():
 
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("stop", stop))
+    app.add_handler(CallbackQueryHandler(button_handler))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_answer))
 
     print("Бот запущен...")

@@ -172,7 +172,7 @@
         "author": "Неизвестен",
         "image": "images/Коры.jpg",
         "no_author": true,
-        "title_aliases": [ "Коры","Кариатиды" ]
+        "title_aliases": [ "Коры", "Кариатиды" ]
     },
     {
         "title": "Помпеи",
@@ -193,6 +193,321 @@
         "author": "Мирон",
         "image": "images/Дискобол.jpg",
         "title_aliases": [ "Дискобол" ],
-        "author_aliases": ["Мирон"]
+        "author_aliases": [ "Мирон" ]
+    },
+    {
+        "title": "Дорифор ",
+        "author": "Поликлет",
+        "image": "images/Дорифор .jpg",
+        "title_aliases": [ "Дорифор " ],
+        "author_aliases": [ "Поликлет" ]
+    },
+    {
+        "title": "Страшный суд",
+        "author": "Микеланджело",
+        "image": "images/Страшный суд.jpg",
+        "title_aliases": [ "Страшный суд" ],
+        "author_aliases": [ "Микеланджело" ]
+    },
+    {
+        "title": "Мадонна в скалах",
+        "author": "Леонардо Да Винчи",
+        "image": "images/Мадонна в скалах.jpg",
+        "title_aliases": [ "Мадонна в скалах" ],
+        "author_aliases": [ "Леонардо Да Винчи", "Да Винчи" ]
+    },
+    {
+        "title": "Мадонна Литта",
+        "author": "Леонардо да Винчи",
+        "image": "images/Мадонна Литта (Леонардо да Винчи).jpg",
+        "title_aliases": [ "Мадонна Литта" ],
+        "author_aliases": [ "Леонардо да Винчи", "Да Винчи" ]
+    },
+    {
+        "title": "Мадонна Бенуа",
+        "author": "Леонардо да Винчи",
+        "image": "images/Мадонна Бенуа (Леонардо да Винчи).jpg",
+        "title_aliases": [ "Мадонна Бенуа" ],
+        "author_aliases": [ "Леонардо да Винчи", "Да Винчи" ]
+    },
+    {
+        "title": "Дама с горностаем",
+        "author": "Леонардо да Винчи",
+        "image": "images/Дама с горностаем (Леонардо да Винчи).jpg",
+        "title_aliases": [ "Дама с горностаем" ],
+        "author_aliases": [ "Леонардо да Винчи", "Да Винчи" ]
+    },
+    {
+        "title": "Портрет Джинервы де Бенчи",
+        "author": "Леонардо да Винчи",
+        "image": "images/Портрет Джинервы де Бенчи (Леонардо да Винчи).jpg",
+        "title_aliases": [ "Портрет Джинервы де Бенчи" ],
+        "author_aliases": [ "Леонардо да Винчи" ]
+    },
+    {
+        "title": "Мона Лиза",
+        "author": "Леонардо да Винчи",
+        "image": "images/Мона Лиза (Леонардо да Винчи).jpg",
+        "title_aliases": [ "Мона Лиза" ],
+        "author_aliases": [ "Леонардо да Винчи" ]
+    },
+    {
+        "title": "Тайная вечеря",
+        "author": "Леонардо да Винчи",
+        "image": "images/Тайная вечеря (Леонардо да Винчи).jpg",
+        "title_aliases": [ "Тайная вечеря" ],
+        "author_aliases": [ "Леонардо да Винчи" ]
+    },
+    {
+        "title": "Пьета",
+        "author": "Микеланджело",
+        "image": "images/Пьета (Микеланджело).jpg",
+        "title_aliases": [ "Пьета" ],
+        "author_aliases": [ "Микеланджело" ]
+    },
+    {
+        "title": "Давид",
+        "author": "Микеланджело",
+        "image": "images/Давид (Микеланджело).jpg",
+        "title_aliases": [ "Давид" ],
+        "author_aliases": [ "Микеланджело" ]
+    },
+    {
+        "title": "Синкстинская капелла",
+        "author": "Микеланджело",
+        "image": "images/Синкстинская капелла (Микеланджело).jpg",
+        "title_aliases": [ "Синкстинская капелла", "Синкстинская капела" ],
+        "author_aliases": [ "Микеланджело" ]
+    },
+    {
+        "title": "Мадонна с младенцем",
+        "author": "Рафаэль",
+        "image": "images/Мадонна с младенцем (Рафаэль).jpg",
+        "title_aliases": [ "Мадонна с младенцем" ],
+        "author_aliases": [ "Рафаэль" ]
+    },
+    {
+        "title": "Весна",
+        "author": "Боттичелли",
+        "image": "images/Весна (Боттичелли).jpg",
+        "title_aliases": [ "Весна" ],
+        "author_aliases": [ "Боттичелли" ]
+    },
+    {
+        "title": "Рождение Венеры",
+        "author": "Боттичелли",
+        "image": "images/Рождение Венеры (Боттичелли).jpg",
+        "title_aliases": [ "Рождение Венеры" ],
+        "author_aliases": [ "Боттичелли" ]
+    },
+    {
+        "title": "Оплакивание Христа",
+        "author": "Боттичелли",
+        "image": "images/Оплакивание Христа  (Боттичелли).jpg",
+        "title_aliases": [ "Оплакивание Христа" ],
+        "author_aliases": [ "Боттичелли" ]
+    },
+    {
+        "title": "Симонетта Веспуччи",
+        "author": "Боттичелли",
+        "image": "images/Симонетта Веспуччи (Боттичелли).jpg",
+        "title_aliases": [ "Симонетта Веспуччи", "Симонета Веспучи" ],
+        "author_aliases": [ "Боттичелли" ]
+    },
+    {
+        "title": "Благовещение",
+        "author": "Боттичелли",
+        "image": "images/Благовещение (Боттичелли).jpg",
+        "title_aliases": [ "Благовещение" ],
+        "author_aliases": [ "Боттичелли" ]
+    },
+    {
+        "title": "Давид",
+        "author": "Донателло",
+        "image": "images/Давид (Донателло).jpg",
+        "title_aliases": [ "Давид" ],
+        "author_aliases": [ "Донателло" ]
+    },
+    {
+        "title": "Давид",
+        "author": "Вероккьо",
+        "image": "images/Давид (Вероккьо).jpg",
+        "title_aliases": [ "Давид" ],
+        "author_aliases": [ "Вероккьо" ]
+    },
+    {
+        "title": "Любовь земная и любовь небесная",
+        "author": "Тициан",
+        "image": "images/Любовь земная и любовь небесная (Тициан).jpg",
+        "title_aliases": [ "Любовь земная и любовь небесная" ],
+        "author_aliases": [ "Тициан" ]
+    },
+    {
+        "title": "Зима",
+        "author": "Джузеппе Арчимбольдо",
+        "image": "images/Зима (Джузеппе Арчимбольдо).jpg",
+        "title_aliases": [ "Зима" ],
+        "author_aliases": [ "Джузеппе Арчимбольдо" ]
+    },
+    {
+        "title": "Весна",
+        "author": "Джузеппе Арчимбольдо",
+        "image": "images/Весна (Джузеппе Арчимбольдо).jpg",
+        "title_aliases": [ "Весна" ],
+        "author_aliases": [ "Джузеппе Арчимбольдо" ]
+    },
+    {
+        "title": "",
+        "author": "",
+        "image": "images/.jpg",
+        "title_aliases": [ "" ],
+        "author_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "",
+        "image": "images/.jpg",
+        "title_aliases": [ "" ],
+        "author_aliases": [ "" ]
+    },
+    {
+        "title": "Собор Святой Софии",
+        "author": "Неизвестен",
+        "image": "images/Собор Святой Софии.jpg",
+        "no_author": true,
+        "title_aliases": [ "Собор Святой Софии" ]
+    },
+    {
+        "title": "Сан-Витале в Равенне",
+        "author": "Неизвестен",
+        "image": "images/Сан-Витале в Равенне.jpg",
+        "no_author": true,
+        "title_aliases": [ "Сан-Витале в Равенне", "Сан Витале в Равенне", "Сан Витале" ]
+    },
+    {
+        "title": "Монастырь Святой Екатерины",
+        "author": "Неизвестен",
+        "image": "images/Монастырь Святой Екатерины.jpg",
+        "no_author": true,
+        "title_aliases": [ "Монастырь Святой Екатерины" ]
+    },
+    {
+        "title": "Собор Святого Марка в Венеции",
+        "author": "Неизвестен",
+        "image": "images/Собор Святого Марка в Венеции.jpg",
+        "no_author": true,
+        "title_aliases": [ "Собор Святого Марка в Венеции", "Собор Святого Марка" ]
+    },
+    {
+        "title": "Замок графов Фландерии",
+        "author": "Неизвестен",
+        "image": "images/Замок графов Фландерии.jpg",
+        "no_author": true,
+        "title_aliases": [ "Замок графов Фландерии" ]
+    },
+    {
+        "title": "Трирский собор в Трире",
+        "author": "Неизвестен",
+        "image": "images/Трирский собор в Трире.jpg",
+        "no_author": true,
+        "title_aliases": [ "Трирский собор в Трире", "Трирский собор" ]
+    },
+    {
+        "title": "Памятник Гаттамелате",
+        "author": "Неизвестен",
+        "image": "images/Памятник Гаттамелате.jpg",
+        "no_author": true,
+        "title_aliases": [ "Памятник Гаттамелате", "Памятник Гатамелате" ]
+    },
+    {
+        "title": "Памятник Бартоломео Каллеони",
+        "author": "Неизвестен",
+        "image": "images/Памятник Бартоломео Каллеони.jpg",
+        "no_author": true,
+        "title_aliases": [ "Памятник Бартоломео Каллеони" ]
+    },
+    {
+        "title": "Собор Парижской Богоматери",
+        "author": "Неизвестен",
+        "image": "images/Собор Парижской Богоматери.jpg",
+        "no_author": true,
+        "title_aliases": [ "Собор Парижской Богоматери" ]
+    },
+    {
+        "title": "Собор в Шартре",
+        "author": "Неизвестен",
+        "image": "images/Собор в Шартре (Нотр дам де Шартр).jpg",
+        "no_author": true,
+        "title_aliases": [ "Собор в Шартре", "Нотр дам де Шартр" ]
+    },
+    {
+        "title": "Собор в Реймсе",
+        "author": "Неизвестен",
+        "image": "images/Собор в Реймсе (Нотр дам де Реймс).jpg",
+        "no_author": true,
+        "title_aliases": [ "Собор в Реймсе", "Нотр дам де Реймс" ]
+    },
+    {
+        "title": "Окно роза",
+        "author": "Неизвестен",
+        "image": "images/Окно роза.jpg",
+        "no_author": true,
+        "title_aliases": [ "Окно роза" ]
+    },
+    {
+        "title": "Встреча Марии с Елизаветой",
+        "author": "Неизвестен",
+        "image": "images/Встреча Марии с Елизаветой.jpg",
+        "no_author": true,
+        "title_aliases": [ "Встреча Марии с Елизаветой" ]
+    },
+    {
+        "title": "Собор Святого Петра в Ватикане",
+        "author": "Неизвестен",
+        "image": "images/Собор Святого Петра в Ватикане.jpg",
+        "no_author": true,
+        "title_aliases": [ "Собор Святого Петра в Ватикане", "Собор Святого Петра" ]
+    },
+    {
+        "title": "Сиенский собор",
+        "author": "Неизвестен",
+        "image": "images/Сиенский собор.jpg",
+        "no_author": true,
+        "title_aliases": [ "Сиенский собор" ]
+    },
+    {
+        "title": "Миланский собор",
+        "author": "Неизвестен",
+        "image": "images/Миланский собор.jpg",
+        "no_author": true,
+        "title_aliases": [ "Миланский собор" ]
+    },
+    {
+        "title": "Санта Мария дель Фьоре",
+        "author": "Неизвестен",
+        "image": "images/Санта Мария дель Фьоре.jpg",
+        "no_author": true,
+        "title_aliases": [ "Санта Мария дель Фьоре" ]
+    },
+    {
+        "title": "Мозаика Александра Македонского",
+        "author": "Неизвестен",
+        "image": "images/Мозаика Александра Македонского.jpg",
+        "no_author": true,
+        "title_aliases": [ "Мозаика Александра Македонского" ]
+    },
+    {
+        "title": "Санта Мария дела Салюте",
+        "author": "Неизвестен",
+        "image": "images/Санта Мария дела Салюте.jpg",
+        "no_author": true,
+        "title_aliases": [ "Санта Мария дела Салюте" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
     }
 ]

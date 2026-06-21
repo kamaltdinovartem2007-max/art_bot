@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>Викторина по искусству</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F4EF;
+    --bg-card: #FFFFFF;
+    --bg-input: #FFFFFF;
+    --bg-menu-icon: #EDE9E1;
+    --bg-dark: #2E2A24;
+    --text-primary: #2E2A24;
+    --text-secondary: #6B6459;
+    --text-muted: #9B9286;
+    --border: #DDD8CF;
+    --border-hover: #C9C3B8;
+    --correct-bg: #EAF3DE; --correct-text: #3B6D11;
+    --partial-bg: #FAEEDA; --partial-text: #854F0B;
+    --wrong-bg:   #FCEBEB; --wrong-text:   #A32D2D;
+    --progress-bg: #EDE9E1;
+    --toggle-bg: #EDE9E1;
+  }
+
+  [data-theme="dark"] {
+    --bg: #1A1814;
+    --bg-card: #252219;
+    --bg-input: #2E2A24;
+    --bg-menu-icon: #333028;
+    --bg-dark: #F7F4EF;
+    --text-primary: #F0EDE7;
+    --text-secondary: #C4BEB6;
+    --text-muted: #7A7469;
+    --border: #3A3630;
+    --border-hover: #524E47;
+    --correct-bg: #1E2E12; --correct-text: #A8D97A;
+    --partial-bg: #2E2210; --partial-text: #F0B862;
+    --wrong-bg:   #2E1414; --wrong-text:   #F08080;
+    --progress-bg: #2E2A24;
+    --toggle-bg: #333028;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: background 0.25s, color 0.25s;
+  }
+
+  .app {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .screen { display: none; flex-direction: column; flex: 1; }
+  .screen.active { display: flex; }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 32px 24px 22px;
+    border-bottom: 0.5px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .header-text {}
+  .header-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.15;
+  }
+
+  /* ── THEME TOGGLE ── */
+  .theme-toggle {
+    background: var(--toggle-bg);
+    border: 0.5px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s;
+    white-space: nowrap;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .theme-toggle:hover { background: var(--border); }
+  .theme-icon { font-size: 15px; }
+
+  /* ── MENU ── */
+  .menu-body {
+    flex: 1;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .menu-card {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 18px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .menu-card:hover { background: var(--bg-menu-icon); border-color: var(--border-hover); }
+  .menu-card:active { opacity: 0.85; }
+  .menu-icon {
+    width: 46px; height: 46px;
+    background: var(--bg-menu-icon);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .menu-card:hover .menu-icon { background: var(--border); }
+  .menu-info { flex: 1; }
+  .menu-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+  .menu-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+  .menu-arrow { color: var(--border-hover); font-size: 18px; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0 4px;
+    margin-top: 4px;
+  }
+
+  /* ── SUB BANNER ── */
+  .sub-banner {
+    margin: 0 24px 28px;
+    background: var(--bg-dark);
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .sub-text { flex: 1; }
+  .sub-title { font-size: 13px; font-weight: 500; color: #F7F4EF; margin-bottom: 2px; }
+  .sub-desc { font-size: 11px; color: #7A7469; }
+  .sub-btn {
+    background: #F7F4EF;
+    color: #2E2A24;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+  }
+  .sub-btn:hover { background: #EDE9E1; }
+
+  /* ── QUIZ TOPBAR ── */
+  .quiz-topbar {
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .back-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--text-muted); font-size: 22px;
+    padding: 0; line-height: 1;
+    display: flex; align-items: center;
+  }
+  .back-btn:hover { color: var(--text-primary); }
+  .progress-label { font-size: 13px; color: var(--text-muted); }
+  .stop-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 12px; color: var(--text-muted);
+    text-decoration: underline;
+    font-family: 'Inter', sans-serif;
+  }
+  .stop-btn:hover { color: var(--text-secondary); }
+
+  .progress-bar { height: 2px; background: var(--progress-bg); }
+  .progress-fill { height: 100%; background: var(--text-primary); transition: width 0.4s ease; }
+
+  /* ── ARTWORK FRAME ── */
+  .artwork-frame {
+    margin: 20px 24px 16px;
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .artwork-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+  .artwork-frame img.loaded { display: block; }
+  .artwork-placeholder {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px;
+    position: absolute;
+  }
+  .artwork-placeholder-icon { font-size: 38px; color: var(--border); }
+  .artwork-placeholder-text { font-size: 12px; color: var(--text-muted); font-style: italic; }
+
+  /* ── QUESTION ── */
+  .quiz-question { padding: 0 24px 14px; }
+  .quiz-q-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .answer-input {
+    width: 100%;
+    background: var(--bg-input);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .answer-input:focus { border-color: var(--border-hover); }
+  .answer-input::placeholder { color: var(--text-muted); }
+
+  .submit-btn {
+    margin: 0 24px;
+    width: calc(100% - 48px);
+    background: var(--text-primary);
+    color: var(--bg);
+    border: none;
+    border-radius: 10px;
+    padding: 13px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .submit-btn:hover { opacity: 0.85; }
+  .submit-btn:active { opacity: 0.7; }
+
+  /* ── FEEDBACK ── */
+  .feedback {
+    margin: 12px 24px 0;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    display: none;
+  }
+  .feedback.correct { background: var(--correct-bg); color: var(--correct-text); display: block; }
+  .feedback.partial  { background: var(--partial-bg); color: var(--partial-text); display: block; }
+  .feedback.wrong    { background: var(--wrong-bg);   color: var(--wrong-text);   display: block; }
+  .feedback-title { font-weight: 500; margin-bottom: 3px; }
+
+  .next-btn {
+    margin: 10px 24px 24px;
+    width: calc(100% - 48px);
+    background: transparent;
+    color: var(--text-primary);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    display: none;
+    transition: background 0.15s;
+  }
+  .next-btn:hover { background: var(--bg-menu-icon); }
+  .next-btn.visible { display: block; }
+
+  /* ── RESULT ── */
+  .result-body {
+    flex: 1;
+    padding: 40px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .result-emoji { font-size: 54px; margin-bottom: 20px; }
+  .result-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .result-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+  .result-score {
+    background: var(--text-primary);
+    color: var(--bg);
+    border-radius: 50%;
+    width: 96px; height: 96px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    margin-bottom: 36px;
+  }
+  .result-score-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .result-score-label { font-size: 10px; color: var(--text-muted); margin-top: 3px; }
+  .result-back-btn {
+    width: 100%;
+    background: var(--text-primary);
+    color: var(--bg);
+    border: none;
+    border-radius: 10px;
+    padding: 13px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .result-back-btn:hover { opacity: 0.85; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- МЕНЮ -->
+  <div class="screen active" id="screen-menu">
+    <div class="header">
+      <div class="header-text">
+        <div class="header-label">Телеграм-бот</div>
+        <div class="header-title">Викторина<br>по искусству</div>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">
+        <span class="theme-icon" id="theme-icon">🌙</span>
+        <span id="theme-label">Тёмная</span>
+      </button>
+    </div>
+    <div class="menu-body">
+      <div class="section-label">Выбери режим</div>
+      <div class="menu-card" onclick="startMode('quiz')">
+        <div class="menu-icon">🎨</div>
+        <div class="menu-info">
+          <div class="menu-name">Викторина</div>
+          <div class="menu-desc">5 случайных произведений</div>
+        </div>
+        <span class="menu-arrow">›</span>
+      </div>
+      <div class="menu-card" onclick="startMode('marathon')">
+        <div class="menu-icon">🏃</div>
+        <div class="menu-info">
+          <div class="menu-name">Марафон</div>
+          <div class="menu-desc">Все картины в случайном порядке</div>
+        </div>
+        <span class="menu-arrow">›</span>
+      </div>
+    </div>
+    <div class="sub-banner">
+      <span style="font-size:20px">🔑</span>
+      <div class="sub-text">
+        <div class="sub-title">Подписка — 100 ₽/мес</div>
+        <div class="sub-desc">Доступ ко всем режимам</div>
+      </div>
+      <button class="sub-btn" onclick="pay()">Оплатить</button>
+    </div>
+  </div>
+
+  <!-- ВИКТОРИНА -->
+  <div class="screen" id="screen-quiz">
+    <div class="quiz-topbar">
+      <button class="back-btn" onclick="goMenu()" aria-label="Назад">‹</button>
+      <span class="progress-label" id="progress-label">Вопрос 1 / 5</span>
+      <button class="stop-btn" onclick="goMenu()">Стоп</button>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width:20%"></div>
+    </div>
+    <div class="artwork-frame" id="artwork-frame">
+      <img id="artwork-img" src="" alt="Произведение искусства" />
+      <div class="artwork-placeholder" id="artwork-placeholder">
+        <div class="artwork-placeholder-icon">🖼</div>
+        <div class="artwork-placeholder-text" id="artwork-hint">Загрузка...</div>
+      </div>
+    </div>
+    <div class="quiz-question">
+      <div class="quiz-q-label" id="quiz-q-label">Что это за произведение и кто его автор?</div>
+      <input class="answer-input" id="answer-input" type="text"
+        placeholder="Название — Автор"
+        onkeydown="if(event.key==='Enter') checkAnswer()" />
+    </div>
+    <button class="submit-btn" id="submit-btn" onclick="checkAnswer()">Проверить ответ</button>
+    <div class="feedback" id="feedback">
+      <div class="feedback-title" id="feedback-title"></div>
+      <div id="feedback-body"></div>
+    </div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Следующий →</button>
+  </div>
+
+  <!-- РЕЗУЛЬТАТ -->
+  <div class="screen" id="screen-result">
+    <div class="header">
+      <div class="header-text">
+        <div class="header-label" id="result-mode-label">Викторина</div>
+        <div class="header-title">Результат</div>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn2">
+        <span class="theme-icon" id="theme-icon2">🌙</span>
+        <span id="theme-label2">Тёмная</span>
+      </button>
+    </div>
+    <div class="result-body">
+      <div class="result-emoji" id="result-emoji">🏆</div>
+      <div class="result-title" id="result-title">Блестяще!</div>
+      <div class="result-subtitle" id="result-subtitle">Все ответы верны</div>
+      <div class="result-score">
+        <div class="result-score-num" id="result-score-num">5/5</div>
+        <div class="result-score-label">правильно</div>
+      </div>
+      <button class="result-back-btn" onclick="goMenu()">← Вернуться в меню</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── ТЕМА ──
+let isDark = false;
+function toggleTheme() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  const icon = isDark ? '☀️' : '🌙';
+  const label = isDark ? 'Светлая' : 'Тёмная';
+  document.getElementById('theme-icon').textContent = icon;
+  document.getElementById('theme-label').textContent = label;
+  document.getElementById('theme-icon2').textContent = icon;
+  document.getElementById('theme-label2').textContent = label;
+  if (window.Telegram && Telegram.WebApp) {
+    Telegram.WebApp.setHeaderColor(isDark ? '#1A1814' : '#F7F4EF');
+  }
+}
+
+// ── ДАННЫЕ (заменить на свои из artworks.json) ──
+const ARTWORKS = [
+  { title: "Дворец Миноса", author: "Неизвестен", image: "images/Palazzo_Minosse7.jpg", no_author: true, title_aliases: ["Дворец Миноса", "Дворец Миносса", "Миносский дворец"], author_aliases: ["Неизвестен"] },
+  { title: "Пергамский алтарь в Берлине", author: "Неизвестен", image: "images/Pergamonaltarimmesselbau2.jpg", no_author: true, title_aliases: ["Пергамский алтарь в Берлине"], author_aliases: ["Неизвестен"] },
+  { title: "Акробаты с быком", author: "Неизвестен", image: "images/images.jpg", no_author: true, title_aliases: ["Акробаты с быком"], author_aliases: ["Неизвестен"] },
+  { title: "Дамы в голубом", author: "Неизвестен", image: "images/YERx1RHro7A.jpg", no_author: true, title_aliases: ["Дамы в голубом"], author_aliases: ["Неизвестен"] },
+  { title: "Парижанка", author: "Неизвестен", image: "images/imagers.jpg", no_author: true, title_aliases: ["Парижанка"], author_aliases: ["Неизвестен"] },
+  { title: "Львиные ворота", author: "Неизвестен", image: "images/imasges.jpg", no_author: true, title_aliases: ["Львиные ворота"], author_aliases: ["Неизвестен"] },
+  { title: "Венера Милосская", author: "Неизвестен", image: "images/загруeженное.jpg", no_author: true, title_aliases: ["Венера Милосская", "Венера Милоская"], author_aliases: ["Неизвестен"] },
+  { title: "Лаокоон и его сыновья", author: "Неизвестен", image: "images/загружеyнное.jpg", no_author: true, title_aliases: ["Лаокоон и его сыновья"], author_aliases: ["Неизвестен"] },
+  { title: "Аполлон Бельведерский", author: "Неизвестен", image: "images/Аполлон Бельведерский.jpg", no_author: true, title_aliases: ["Аполлон Бельведерский"], author_aliases: ["Неизвестен"] },
+  { title: "Капитолийская волчица", author: "Неизвестен", image: "images/Капитолийская волчица.jpg", no_author: true, title_aliases: ["Капитолийская волчица"], author_aliases: ["Неизвестен"] },
+  { title: "Ника Самофракийская", author: "Неизвестен", image: "images/Ника Самофракийская.jpg", no_author: true, title_aliases: ["Ника Самофракийская"], author_aliases: ["Неизвестен"] },
+  { title: "Парфенон", author: "Неизвестен", image: "images/Парфенон.jpg", no_author: true, title_aliases: ["Парфенон"], author_aliases: ["Неизвестен"] },
+  { title: "Римский форум", author: "Неизвестен", image: "images/Римский форум.jpg", no_author: true, title_aliases: ["Римский форум"], author_aliases: ["Неизвестен"] },
+  { title: "Умирающий галл", author: "Неизвестен", image: "images/Умирающий галл.jpg", no_author: true, title_aliases: ["Умирающий галл"], author_aliases: ["Неизвестен"] },
+  { title: "Храм Аполлона в Коринфе", author: "Неизвестен", image: "images/Храм Аполлона в Коринфе.jpg", no_author: true, title_aliases: ["Храм Аполлона в Коринфе", "Храм Аполлона"], author_aliases: ["Неизвестен"] },
+  { title: "Храм Геры в Олимпии", author: "Неизвестен", image: "images/Храм Геры в Олимпии.jpg", no_author: true, title_aliases: ["Храм Геры в Олимпии", "Храм Геры"], author_aliases: ["Неизвестен"] },
+  { title: "Храм Зевса Олимпийского в Афинах", author: "Неизвестен", image: "images/Храм Зевса Олимпийского в Афинах.jpg", no_author: true, title_aliases: ["Храм Зевса Олимпийского в Афинах", "Храм Зевса Олимпийского", "Храм Зевса", "Храм Зевса в Афинах"], author_aliases: ["Неизвестен"] },
+  { title: "Афина Парфенос", author: "Неизвестен", image: "images/Афина Парфенос.jpg", no_author: true, title_aliases: ["Афина Парфенос"], author_aliases: ["Неизвестен"] },
+  { title: "Статуя Зевса из храма в Олимпии", author: "Неизвестен", image: "images/Статуя Зевса из храма в Олимпии.jpg", no_author: true, title_aliases: ["Статуя Зевса из храма в Олимпии", "Статуя Зевса"], author_aliases: ["Неизвестен"] },
+  { title: "Колизей", author: "Неизвестен", image: "images/Колизей.jpg", no_author: true, title_aliases: ["Колизей"], author_aliases: ["Неизвестен"] },
+  { title: "Башня Трояна", author: "Неизвестен", image: "images/Башня Трояна.jpg", no_author: true, title_aliases: ["Башня Трояна"], author_aliases: ["Неизвестен"] },
+  { title: "Конная статуя Марка Аврелия", author: "Неизвестен", image: "images/Конная статуя Марка Аврелия.jpg", no_author: true, title_aliases: ["Конная статуя Марка Аврелия"], author_aliases: ["Неизвестен"] },
+  { title: "Пантеон", author: "Неизвестен", image: "images/Пантеон.jpg", no_author: true, title_aliases: ["Пантеон"], author_aliases: ["Неизвестен"] },
+  { title: "Храм Эрехтейон", author: "Неизвестен", image: "images/Храм Эрехтейон.jpg", no_author: true, title_aliases: ["Храм Эрехтейон", "Эрехтейон"], author_aliases: ["Неизвестен"] },
+  { title: "Коры", author: "Неизвестен", image: "images/Коры.jpg", no_author: true, title_aliases: ["Коры", "Кариатиды"], author_aliases: ["Неизвестен"] },
+  { title: "Помпеи", author: "Неизвестен", image: "images/Помпеи.jpg", no_author: true, title_aliases: ["Помпеи"], author_aliases: ["Неизвестен"] },
+  { title: "Вилла Мистерий", author: "Неизвестен", image: "images/Вилла Мистерий.jpg", no_author: true, title_aliases: ["Вилла Мистерий"], author_aliases: ["Неизвестен"] },
+  { title: "Дискобол", author: "Мирон", image: "images/Дискобол.jpg", no_author: false, title_aliases: ["Дискобол"], author_aliases: ["Мирон"] },
+  { title: "Дорифор ", author: "Поликлет", image: "images/Дорифор.jpg", no_author: false, title_aliases: ["Дорифор "], author_aliases: ["Поликлет"] },
+  { title: "Страшный суд", author: "Микеланджело", image: "images/Страшный суд.jpg", no_author: false, title_aliases: ["Страшный суд"], author_aliases: ["Микеланджело"] },
+  { title: "Мадонна в скалах", author: "Леонардо Да Винчи", image: "images/Мадонна в скалах (Леонардо Да Винчи).jpg", no_author: false, title_aliases: ["Мадонна в скалах"], author_aliases: ["Леонардо Да Винчи", "Да Винчи"] },
+  { title: "Мадонна Литта", author: "Леонардо да Винчи", image: "images/Мадонна Литта (Леонардо да Винчи).jpg", no_author: false, title_aliases: ["Мадонна Литта"], author_aliases: ["Леонардо да Винчи", "Да Винчи"] },
+  { title: "Мадонна Бенуа", author: "Леонардо да Винчи", image: "images/Мадонна Бенуа (Леонардо да Винчи).jpg", no_author: false, title_aliases: ["Мадонна Бенуа"], author_aliases: ["Леонардо да Винчи", "Да Винчи"] },
+  { title: "Дама с горностаем", author: "Леонардо да Винчи", image: "images/Дама с горностаем (Леонардо да Винчи).jpg", no_author: false, title_aliases: ["Дама с горностаем"], author_aliases: ["Леонардо да Винчи", "Да Винчи"] },
+  { title: "Портрет Джинервы де Бенчи", author: "Леонардо да Винчи", image: "images/Портрет Джинервы де Бенчи (Леонардо да Винчи).jpg", no_author: false, title_aliases: ["Портрет Джинервы де Бенчи"], author_aliases: ["Леонардо да Винчи"] },
+  { title: "Мона Лиза", author: "Леонардо да Винчи", image: "images/Мона Лиза (Леонардо да Винчи).jpg", no_author: false, title_aliases: ["Мона Лиза"], author_aliases: ["Леонардо да Винчи"] },
+  { title: "Тайная вечеря", author: "Леонардо да Винчи", image: "images/Тайная вечеря (Леонардо да Винчи).jpg", no_author: false, title_aliases: ["Тайная вечеря"], author_aliases: ["Леонардо да Винчи"] },
+  { title: "Пьета", author: "Микеланджело", image: "images/Пьета (Микеланджело).jpg", no_author: false, title_aliases: ["Пьета"], author_aliases: ["Микеланджело"] },
+  { title: "Давид", author: "Микеланджело", image: "images/Давид (Микеланджело).jpg", no_author: false, title_aliases: ["Давид"], author_aliases: ["Микеланджело"] },
+  { title: "Синкстинская капелла", author: "Микеланджело", image: "images/Синкстинская капелла (Микеланджело).jpg", no_author: false, title_aliases: ["Синкстинская капелла", "Синкстинская капела"], author_aliases: ["Микеланджело"] },
+  { title: "Мадонна с младенцем", author: "Рафаэль", image: "images/Мадонна с младенцем (Рафаэль).jpg", no_author: false, title_aliases: ["Мадонна с младенцем"], author_aliases: ["Рафаэль"] },
+  { title: "Весна", author: "Боттичелли", image: "images/Весна (Боттичелли).jpg", no_author: false, title_aliases: ["Весна"], author_aliases: ["Боттичелли"] },
+  { title: "Рождение Венеры", author: "Боттичелли", image: "images/Рождение Венеры (Боттичелли).jpg", no_author: false, title_aliases: ["Рождение Венеры"], author_aliases: ["Боттичелли"] },
+  { title: "Оплакивание Христа", author: "Боттичелли", image: "images/Оплакивание Христа  (Боттичелли).jpg", no_author: false, title_aliases: ["Оплакивание Христа"], author_aliases: ["Боттичелли"] },
+  { title: "Симонетта Веспуччи", author: "Боттичелли", image: "images/Симонетта Веспуччи (Боттичелли).jpg", no_author: false, title_aliases: ["Симонетта Веспуччи", "Симонета Веспучи"], author_aliases: ["Боттичелли"] },
+  { title: "Благовещение", author: "Боттичелли", image: "images/Благовещение (Боттичелли).jpg", no_author: false, title_aliases: ["Благовещение"], author_aliases: ["Боттичелли"] },
+  { title: "Давид", author: "Донателло", image: "images/Давид (Донателло).jpg", no_author: false, title_aliases: ["Давид"], author_aliases: ["Донателло"] },
+  { title: "Давид", author: "Вероккьо", image: "images/Давид (Вероккьо).jpg", no_author: false, title_aliases: ["Давид"], author_aliases: ["Вероккьо"] },
+  { title: "Любовь земная и любовь небесная", author: "Тициан", image: "images/Любовь земная и любовь небесная (Тициан).jpg", no_author: false, title_aliases: ["Любовь земная и любовь небесная"], author_aliases: ["Тициан"] },
+  { title: "Зима", author: "Джузеппе Арчимбольдо", image: "images/Зима (Джузеппе Арчимбольдо).jpg", no_author: false, title_aliases: ["Зима"], author_aliases: ["Джузеппе Арчимбольдо"] },
+  { title: "Весна", author: "Джузеппе Арчимбольдо", image: "images/Весна (Джузеппе Арчимбольдо).jpg", no_author: false, title_aliases: ["Весна"], author_aliases: ["Джузеппе Арчимбольдо"] },
+  { title: "Охотники на снегу", author: "Питер Брейгель старший", image: "images/Охотники на снегу (Питер Брейгель старший).jpg", no_author: false, title_aliases: ["Охотники на снегу"], author_aliases: ["Питер Брейгель старший", "Питер Брейгель", "Брейгель"] },
+  { title: "Битва масленицы и поста", author: "Питер Брейгель старший", image: "images/Битва масленицы и поста (Питер Брейгель старший).jpg", no_author: false, title_aliases: ["Битва масленицы и поста"], author_aliases: ["Питер Брейгель старший", "Питер Брейгель", "Брейгель"] },
+  { title: "Четыре всадника апокалипсиса", author: "Альбрехт Дюрер", image: "images/Четыре всадника апокалипсиса (Альбрехт Дюрер).jpg", no_author: false, title_aliases: ["Четыре всадника апокалипсиса"], author_aliases: ["Альбрехт Дюрер"] },
+  { title: "Меланхолия", author: "Альбрехт Дюрер", image: "images/Меланхолия (Альбрехт Дюрер).jpg", no_author: false, title_aliases: ["Меланхолия"], author_aliases: ["Альбрехт Дюрер"] },
+  { title: "Заяц", author: "Альбрехт Дюрер", image: "images/Заяц (Альбрехт Дюрер).jpg", no_author: false, title_aliases: ["Заяц"], author_aliases: ["Альбрехт Дюрер"] },
+  { title: "Лютнист", author: "Караваджо", image: "images/Лютнист (Караваджо).jpg", no_author: false, title_aliases: ["Лютнист"], author_aliases: ["Караваджо"] },
+  { title: "Корзина с фруктами", author: "Караваджо", image: "images/Корзина с фруктами (Караваджо).jpg", no_author: false, title_aliases: ["Корзина с фруктами"], author_aliases: ["Караваджо"] },
+  { title: "Шулеры", author: "Караваджо", image: "images/Шулеры (Караваджо).jpg", no_author: false, title_aliases: ["Шулеры"], author_aliases: ["Караваджо"] },
+  { title: "Автопортрет 1500", author: "Альбрехт Дюрер", image: "images/Автопортрет 1500 (Альбрехт Дюрер).jpg", no_author: false, title_aliases: ["Автопортрет 1500", "Автопортрет", "Автопортрет 1500 г", "Автопортрет 1500 год"], author_aliases: ["Альбрехт Дюрер"] },
+  { title: "Автопортрет 1498", author: "Альбрехт Дюрер", image: "images/Автопортрет 1498 (Альбрехт Дюрер).jpg", no_author: false, title_aliases: ["Автопортрет 1498", "Автопортрет", "Автопортрет 1498 г", "Автопортрет 1498 год"], author_aliases: ["Альбрехт Дюрер"] },
+  { title: "Давид", author: "Бернини", image: "images/Давид (Бернини).jpg", no_author: false, title_aliases: ["Давид"], author_aliases: ["Бернини"] },
+  { title: "Бюст Людовига 14", author: "Бернини", image: "images/Бюст Людовига 14 (Бернини).jpg", no_author: false, title_aliases: ["Бюст Людовига 14"], author_aliases: ["Бернини"] },
+  { title: "Экстаз Святой Терезы (Бернини)", author: "Бернини", image: "images/Экстаз Святой Терезы (Бернини).jpg", no_author: false, title_aliases: ["Экстаз Святой Терезы"], author_aliases: ["Бернини"] },
+  { title: "Аполлон и Дафна", author: "Бернини", image: "images/Аполлон и Дафна (Бернини).jpg", no_author: false, title_aliases: ["Аполлон и Дафна"], author_aliases: ["Бернини"] },
+  { title: "Вид Толедо в грозу", author: "Эль Греко", image: "images/Вид Толедо в грозу (Эль Греко).jpg", no_author: false, title_aliases: ["Вид Толедо в грозу"], author_aliases: ["Эль Греко"] },
+  { title: "Апостол Пётр и Павел", author: "Эль Греко", image: "images/Апостол Пётр и Павел (Эль Греко).jpg", no_author: false, title_aliases: ["Апостол Пётр и Павел"], author_aliases: ["Эль Греко"] },
+  { title: "Персей освобождает Андромеду(Рубенс)", author: "Рубенс", image: "images/Персей освобождает Андромеду(Рубенс).jpg", no_author: false, title_aliases: ["Персей освобождает Андромеду"], author_aliases: ["Рубенс"] },
+  { title: "Автопортрет с Изабеллой Брант", author: "Рубенс", image: "images/Автопортрет с Изабеллой Брант (Рубенс).jpg", no_author: false, title_aliases: ["Автопортрет с Изабеллой Брант", "Автопортрет с Изабелой Брант"], author_aliases: ["Рубенс"] },
+  { title: "Коронация Марии Медичи", author: "Рубенс", image: "images/Коронация Марии Медичи (Рубенс).jpg", no_author: false, title_aliases: ["Коронация Марии Медичи"], author_aliases: ["Рубенс"] },
+  { title: "Ночной дозор", author: "Рембрандт", image: "images/Ночной дозор (Рембрандт).jpg", no_author: false, title_aliases: ["Ночной дозор"], author_aliases: ["Рембрандт"] },
+  { title: "Автопортрет с Саскией на коленях", author: "Рембрандт", image: "images/Автопортрет с Саскией на коленях (Рембрандт).jpg", no_author: false, title_aliases: ["Автопортрет с Саскией на коленях", "Автопортрет с Саскией"], author_aliases: ["Рембрандт"] },
+  { title: "Флора", author: "Рембрандт", image: "images/Флора (Рембрандт).jpg", no_author: false, title_aliases: ["Флора"], author_aliases: ["Рембрандт"] },
+  { title: "Возвращение блудного сына", author: "Рембрандт", image: "images/Возвращение блудного сына (Рембрандт).jpg", no_author: false, title_aliases: ["Возвращение блудного сына"], author_aliases: ["Рембрандт"] },
+  { title: "Портрет старика в красном", author: "Рембрандт", image: "images/Портрет старика в красном (Рембрандт).jpg", no_author: false, title_aliases: ["Портрет старика в красном"], author_aliases: ["Рембрандт"] },
+  { title: "Молочница", author: "Вермеер", image: "images/Молочница (Вермеер).jpg", no_author: false, title_aliases: ["Молочница"], author_aliases: ["Вермеер"] },
+  { title: "Девушка с жемчужной серёжкой", author: "Вермеер", image: "images/Девушка с жемчужной серёжкой (Вермеер).jpg", no_author: false, title_aliases: ["Девушка с жемчужной серёжкой"], author_aliases: ["Вермеер"] },
+  { title: "Девушка читающая у окна", author: "Вермеер", image: "images/Девушка читающая у окна (Вермеер).jpg", no_author: false, title_aliases: ["Девушка читающая у окна"], author_aliases: ["Вермеер"] },
+  { title: "Вид Дельфта", author: "Вермеер", image: "images/Вид Дельфта (Вермеер).jpg", no_author: false, title_aliases: ["Вид Дельфта"], author_aliases: ["Вермеер"] },
+  { title: "Меницы", author: "Веласкес", image: "images/Меницы (Веласкес).jpg", no_author: false, title_aliases: ["Меницы"], author_aliases: ["Веласкес"] },
+  { title: "Инфанта Маргарита", author: "Веласкес", image: "images/Инфанта Маргарита (Веласкес).jpg", no_author: false, title_aliases: ["Инфанта Маргарита"], author_aliases: ["Веласкес"] },
+  { title: "Портрет Папы Иннокентия 10", author: "Веласкес", image: "images/Портрет Папы Иннокентия 10 (Веласкес).jpg", no_author: false, title_aliases: ["Портрет Папы Иннокентия 10"], author_aliases: ["Веласкес"] },
+  { title: "Портрет Себастьяна Моро", author: "Веласкес", image: "images/Портрет Себастьяна Моро (Веласкес).jpg", no_author: false, title_aliases: ["Портрет Себастьяна Моро"], author_aliases: ["Веласкес"] },
+  { title: "Завтрак", author: "Веласкес", image: "images/Завтрак (Веласкес).jpg", no_author: false, title_aliases: ["Завтрак"], author_aliases: ["Веласкес"] },
+  { title: "Общество в парке", author: "Антуан Ватто", image: "images/Общество в парке (Антуан Ватто).jpg", no_author: false, title_aliases: ["Общество в парке"], author_aliases: ["Антуан Ватто", "Ватто", "Антуан Вато", "Вато"] },
+  { title: "Портрет мадам Пампадур", author: "Антуан Ватто", image: "images/Портрет мадам Пампадур (Антуан Ватто).jpg", no_author: false, title_aliases: ["Портрет мадам Пампадур", "Портрет Пампадур"], author_aliases: ["Антуан Ватто", "Ватто", "Антуан Вато", "Вато"] },
+  { title: "Пастушеская сцена", author: "Франсуа Буше", image: "images/Пастушеская сцена (Франсуа Буше).jpg", no_author: false, title_aliases: ["Пастушеская сцена"], author_aliases: ["Франсуа Буше", "Буше"] },
+  { title: "Клятва горациев", author: "Жак луи Давид", image: "images/Клятва горациев (Жак луи Давид).jpg", no_author: false, title_aliases: ["Клятва горациев"], author_aliases: ["Жак луи Давид"] },
+  { title: "Наполеон на императорском троне", author: "Жак луи Давид", image: "images/Наполеон на императорском троне (Жак луи Давид).jpg", no_author: false, title_aliases: ["Наполеон на императорском троне"], author_aliases: ["Жак луи Давид"] },
+  { title: "Прачка", author: "Жан Батист Шарден", image: "images/Прачка (Жан Батист Шарден).jpg", no_author: false, title_aliases: ["Прачка"], author_aliases: ["Жан Батист Шарден"] },
+  { title: "Молитва перед обедом", author: "Жан Батист Шарден", image: "images/Молитва перед обедом (Жан Батист Шарден).jpg", no_author: false, title_aliases: ["Молитва перед обедом"], author_aliases: ["Жан Батист Шарден"] },
+  { title: "Моисей", author: "Микеланджело", image: "images/Моисей (Микеланджело).jpg", no_author: false, title_aliases: ["Моисей"], author_aliases: ["Микеланджело"] },
+  { title: "Капризница", author: "Антуан Ватто", image: "images/Капризница (Антуан Ватто).jpg", no_author: false, title_aliases: ["Капризница"], author_aliases: ["Антуан Ватто"] },
+  { title: "Жиль", author: "Антуан Ватто", image: "images/Жиль (Антуан Ватто).jpg", no_author: false, title_aliases: ["Жиль"], author_aliases: ["Антуан Ватто"] },
+  { title: "Паралитик", author: "Жан Батист Грёз", image: "images/Паралитик (Жан Батист Грёз).jpg", no_author: false, title_aliases: ["Паралитик"], author_aliases: ["Жан Батист Грёз"] },
+  { title: "Балованное дитя", author: "Жан Батист Грёз", image: "images/Балованное дитя (Жан Батист Грёз).jpg", no_author: false, title_aliases: ["Балованное дитя"], author_aliases: ["Жан Батист Грёз"] },
+  { title: "Маха одетая", author: "Франсиско Гойя", image: "images/Маха одетая (Франсиско Гойя).jpg", no_author: false, title_aliases: ["Маха одетая"], author_aliases: ["Франсиско Гойя"] },
+  { title: "Портрет актрисы Антонии Сарате", author: "Франсиско Гойя", image: "images/Портрет актрисы Антонии Сарате (Франсиско Гойя).jpg", no_author: false, title_aliases: ["Портрет актрисы Антонии Сарате", "Портрет Антонии Сарате"], author_aliases: ["Франсиско Гойя"] },
+  { title: "Портрет семьи Карла 4", author: "Франсиско Гойя", image: "images/Портрет семьи Карла 4 (Франсиско Гойя).jpg", no_author: false, title_aliases: ["Портрет семьи Карла 4", "Портрет семьи Карла четвёртого"], author_aliases: ["Франсиско Гойя"] },
+  { title: "Сон разума рождает чудовищ", author: "Франсиско Гойя", image: "images/Сон разума рождает чудовищ (Франсиско Гойя).jpg", no_author: false, title_aliases: ["Сон разума рождает чудовищ"], author_aliases: ["Франсиско Гойя"] },
+  { title: "Серия капричос", author: "Франсиско Гойя", image: "images/Серия капричос (Франсиско Гойя).jpg", no_author: false, title_aliases: ["Серия капричос"], author_aliases: ["Франсиско Гойя"] },
+  { title: "Махи на балконе", author: "Франсиско Гойя", image: "images/Махи на балконе (Франсиско Гойя).jpg", no_author: false, title_aliases: ["Махи на балконе"], author_aliases: ["Франсиско Гойя"] },
+  { title: "3 мая 1808 года в Мадриде", author: "Франсиско Гойя", image: "images/Расстрел повстанцев в ночь на 3 мая 1808 года (Франсиско Гойя).jpg", no_author: false, title_aliases: ["Расстрел повстанцев в ночь на 3 мая 1808 года", "3 мая 1808 года в Мадриде"], author_aliases: ["Франсиско Гойя"] },
+  { title: "Разносчица воды", author: "Франсиско Гойя", image: "images/Разносчица воды (Франсиско Гойя).jpg", no_author: false, title_aliases: ["Разносчица воды"], author_aliases: ["Франсиско Гойя"] },
+  { title: "Крест в горах", author: "Фридрих", image: "images/Крест в горах Теченский алтарь (Фридрих).jpg", no_author: false, title_aliases: ["Крест в горах", "Теченский алтарь"], author_aliases: ["Фридрих"] },
+  { title: "Резня на Хиосе", author: "Делакруа", image: "images/Резня на Хиосе (Делакруа).jpg", no_author: false, title_aliases: ["Резня на Хиосе"], author_aliases: ["Делакруа"] },
+  { title: "Марокканец седлающий коня", author: "Делакруа", image: "images/Марокканец седлающий коня (Делакруа).jpg", no_author: false, title_aliases: ["Марокканец седлающий коня"], author_aliases: ["Делакруа"] },
+  { title: "Свобода на баррикадах", author: "Делакруа", image: "images/Свобода на баррикадах (Делакруа).jpg", no_author: false, title_aliases: ["Свобода на баррикадах"], author_aliases: ["Делакруа"] },
+  { title: "Завтрак на траве", author: "Эдуард Мане", image: "images/Завтрак на траве (Эдуард Мане).jpg", no_author: false, title_aliases: ["Завтрак на траве"], author_aliases: ["Эдуард Мане", "Мане"] },
+  { title: "Лола из Валенсии", author: "Эдуард Мане", image: "images/Лола из Валенсии (Эдуард Мане).jpg", no_author: false, title_aliases: ["Лола из Валенсии"], author_aliases: ["Эдуард Мане", "Мане"] },
+  { title: "Балкон", author: "Эдуард Мане", image: "images/Балкон (Эдуард Мане).jpg", no_author: false, title_aliases: ["Балкон"], author_aliases: ["Эдуард Мане", "Мане"] },
+  { title: "Бал маскарад в опере", author: "Эдуард Мане", image: "images/Бал маскарад в опере (Эдуард Мане).jpg", no_author: false, title_aliases: ["Бал маскарад в опере"], author_aliases: ["Эдуард Мане", "Мане"] },
+  { title: "В лодке", author: "Эдуард Мане", image: "images/В лодке (Эдуард Мане).jpg", no_author: false, title_aliases: ["В лодке"], author_aliases: ["Эдуард Мане", "Мане"] },
+  { title: "Бар в Фоли Бержер", author: "Эдуард Мане", image: "images/Бар в Фоли Бержер (Эдуард Мане).jpg", no_author: false, title_aliases: ["Бар в Фоли Бержер"], author_aliases: ["Эдуард Мане", "Мане"] },
+  { title: "Дождь пар и скорость", author: "Уильям Тёрнер", image: "images/Дождь пар и скорость (Уильям Тёрнер).jpg", no_author: false, title_aliases: ["Дождь пар и скорость"], author_aliases: ["Уильям Тёрнер", "Вильям Тёрнер"] },
+  { title: "Плот медузы", author: "Теодор Жерико", image: "images/Плот медузы (Теодор Жерико).jpg", no_author: false, title_aliases: ["Плот медузы"], author_aliases: ["Теодор Жерико"] },
+  { title: "Персики и груши", author: "Поль Сезанн", image: "images/Персики и груши (Поль Сезанн).jpg", no_author: false, title_aliases: ["Персики и груши"], author_aliases: ["Поль Сезанн"] },
+  { title: "Пьеро и Арлекин", author: "Поль Сезанн", image: "images/Пьеро и Арлекин (Поль Сезанн).jpg", no_author: false, title_aliases: ["Пьеро и Арлекин"], author_aliases: ["Поль Сезанн"] },
+  { title: "Автопортрет", author: "Поль Сезанн", image: "images/Автопортрет (Поль Сезанн).jpg", no_author: false, title_aliases: ["Автопортрет"], author_aliases: ["Поль Сезанн"] },
+  { title: "Гора Сент Виктуар", author: "Поль Сезанн", image: "images/Гора Сент Виктуар (Поль Сезанн).jpg", no_author: false, title_aliases: ["Гора Сент Виктуар", "Гора Сент Вектуар"], author_aliases: ["Поль Сезанн"] },
+  { title: "Таитянские пасторали", author: "Поль Гоген", image: "images/Таитянские пасторали (Поль Гоген).jpg", no_author: false, title_aliases: ["Таитянские пасторали"], author_aliases: ["Поль Гоген"] },
+  { title: "Ареареа", author: "Поль Гоген", image: "images/Ареареа (Поль Гоген).jpg", no_author: false, title_aliases: ["Ареареа"], author_aliases: ["Поль Гоген"] },
+  { title: "Звёздная ночь", author: "Ван Гог", image: "images/Звёздная ночь (Ван Гог).jpg", no_author: false, title_aliases: ["Звёздная ночь"], author_aliases: ["Ван Гог"] },
+  { title: "Кафе в Арле", author: "Ван Гог", image: "images/Кафе в Арле (Ван Гог).jpg", no_author: false, title_aliases: ["Кафе в Арле"], author_aliases: ["Ван Гог"] },
+  { title: "Впечатление. Восход солнца", author: "Клод Моне", image: "images/Впечатление. Восход солнца (Клод Моне).jpg", no_author: false, title_aliases: ["Впечатление. Восход солнца", "Впечатление.Восход солнца", "Впечатление Восход солнца", "Впечатление", "Восход солнца"], author_aliases: ["Клод Моне"] },
+  { title: "Дикие маки близ Аржантея", author: "Клод Моне", image: "images/Дикие маки близ Аржантея (Клод Моне).jpg", no_author: false, title_aliases: ["Дикие маки близ Аржантея"], author_aliases: ["Клод Моне"] },
+  { title: "Камилла в японском кимоно", author: "Клод Моне", image: "images/Камилла в японском кимоно (Клод Моне).jpg", no_author: false, title_aliases: ["Камилла в японском кимоно", "Камила в японском кимоно", "Камилла в кимоно", "Камила в кимоно"], author_aliases: ["Клод Моне"] },
+  { title: "Японский мостик", author: "Клод Моне", image: "images/Японский мостик (Клод Моне).jpg", no_author: false, title_aliases: ["Японский мостик"], author_aliases: ["Клод Моне"] },
+  { title: "Клоунесса в Мулен Руж", author: "Анри де Тулуз", image: "images/Клоунесса в Мулен руж (Анри де Тулуз).jpg", no_author: false, title_aliases: ["Клоунесса в Мулен Руж", "Клоунеса в Мулен Руж"], author_aliases: ["Анри де Тулуз", "Тулуз"] },
+  { title: "Певица Иветт Гильбер", author: "Анри де Тулуз", image: "images/Певица Иветт Гильбер (Анри де Тулуз).jpg", no_author: false, title_aliases: ["Певица Иветт Гильбер", "Иветт Гильбер"], author_aliases: ["Анри де Тулуз", "Тулуз"] },
+  { title: "Аристид Брюан", author: "Анри де Тулуз", image: "images/Аристид Брюан (Анри де Тулуз).jpg", no_author: false, title_aliases: ["Аристид Брюан"], author_aliases: ["Анри де Тулуз", "Тулуз"] },
+  { title: "Человек с трубкой", author: "Пабло Пикассо", image: "images/Человек с трубкой (Пабло Пикассо).jpg", no_author: false, title_aliases: ["Человек с трубкой"], author_aliases: ["Пабло Пикассо", "Пикассо", "Пабло Пикасо", "Пикасо"] },
+  { title: "Королева Изабо", author: "Пабло Пикассо", image: "images/Королева Изабо (Пабло Пикассо).jpg", no_author: false, title_aliases: ["Королева Изабо"], author_aliases: ["Пабло Пикассо", "Пикассо", "Пабло Пикасо", "Пикасо"] },
+  { title: "Портрет Амбруаза Воллара", author: "Пабло Пикассо", image: "images/Портрет Амбруаза Воллара (Пабло Пикассо).jpg", no_author: false, title_aliases: ["Портрет Амбруаза Воллара"], author_aliases: ["Пабло Пикассо", "Пикассо", "Пабло Пикасо", "Пикасо"] },
+  { title: "Красная комната", author: "Анри Матисс", image: "images/Красная комната (Анри Матисс).jpg", no_author: false, title_aliases: ["Красная комната"], author_aliases: ["Анри Матисс"] },
+  { title: "Бульвар Монмартр", author: "Камиль Писсарро", image: "images/Бульвар Монмартр (Камиль Писсарро).jpg", no_author: false, title_aliases: ["Бульвар Монмартр"], author_aliases: ["Камиль Писсарро", "Камиль Писаро", "Камиль Писарро", "Камиль Писсаро"] },
+  { title: "Воскресный день на острове Гранд Жатт", author: "Жорж Пьер Сёра", image: "images/Воскресный день на острове Гранд Жатт (Жорж Пьер Сёра).jpg", no_author: false, title_aliases: ["Воскресный день на острове Гранд Жатт", "Воскресный день на острове Гранд Жат"], author_aliases: ["Жорж Пьер Сёра"] },
+  { title: "Портрет Жанны Эбютерн", author: "Амадео Модильяни", image: "images/Портрет Жанны Эбютерн (Амадео Модильяни).jpg", no_author: false, title_aliases: ["Портрет Жанны Эбютерн"], author_aliases: ["Амадео Модильяни"] },
+  { title: "Портрет женщины в чёрном галстуке", author: "Амадео Модильяни", image: "images/Портрет женщины в чёрном галстуке (Амадео Модильяни).jpg", no_author: false, title_aliases: ["Портрет женщины в чёрном галстуке"], author_aliases: ["Амадео Модильяни"] },
+  { title: "Выход на станции метро", author: "Гектор Гимар", image: "images/Выход на станции метро (Гектор Гимар).jpg", no_author: false, title_aliases: ["Выход на станции метро"], author_aliases: ["Гектор Гимар", "Гимар"] },
+  { title: "Собор Святой Софии", author: "Неизвестен", image: "images/Собор Святой Софии.jpg", no_author: true, title_aliases: ["Собор Святой Софии"], author_aliases: ["Неизвестен"] },
+  { title: "Сан-Витале в Равенне", author: "Неизвестен", image: "images/Сан-Витале в Равенне.jpg", no_author: true, title_aliases: ["Сан-Витале в Равенне", "Сан Витале в Равенне", "Сан Витале"], author_aliases: ["Неизвестен"] },
+  { title: "Монастырь Святой Екатерины", author: "Неизвестен", image: "images/Монастырь Святой Екатерины.jpg", no_author: true, title_aliases: ["Монастырь Святой Екатерины"], author_aliases: ["Неизвестен"] },
+  { title: "Собор Святого Марка в Венеции", author: "Неизвестен", image: "images/Собор Святого Марка в Венеции.jpg", no_author: true, title_aliases: ["Собор Святого Марка в Венеции", "Собор Святого Марка"], author_aliases: ["Неизвестен"] },
+  { title: "Замок графов Фландерии", author: "Неизвестен", image: "images/Замок графов Фландерии.jpg", no_author: true, title_aliases: ["Замок графов Фландерии"], author_aliases: ["Неизвестен"] },
+  { title: "Трирский собор в Трире", author: "Неизвестен", image: "images/Трирский собор в Трире.jpg", no_author: true, title_aliases: ["Трирский собор в Трире", "Трирский собор"], author_aliases: ["Неизвестен"] },
+  { title: "Памятник Гаттамелате", author: "Неизвестен", image: "images/Памятник Гаттамелате.jpg", no_author: true, title_aliases: ["Памятник Гаттамелате", "Памятник Гатамелате"], author_aliases: ["Неизвестен"] },
+  { title: "Памятник Бартоломео Каллеони", author: "Неизвестен", image: "images/Памятник Бартоломео Каллеони.jpg", no_author: true, title_aliases: ["Памятник Бартоломео Каллеони"], author_aliases: ["Неизвестен"] },
+  { title: "Собор Парижской Богоматери", author: "Неизвестен", image: "images/Собор Парижской Богоматери.jpg", no_author: true, title_aliases: ["Собор Парижской Богоматери"], author_aliases: ["Неизвестен"] },
+  { title: "Собор в Шартре", author: "Неизвестен", image: "images/Собор в Шартре (Нотр дам де Шартр).jpg", no_author: true, title_aliases: ["Собор в Шартре", "Нотр дам де Шартр"], author_aliases: ["Неизвестен"] },
+  { title: "Собор в Реймсе", author: "Неизвестен", image: "images/Собор в Реймсе (Нотр дам де Реймс).jpg", no_author: true, title_aliases: ["Собор в Реймсе", "Нотр дам де Реймс"], author_aliases: ["Неизвестен"] },
+  { title: "Окно роза", author: "Неизвестен", image: "images/Окно роза.jpg", no_author: true, title_aliases: ["Окно роза"], author_aliases: ["Неизвестен"] },
+  { title: "Встреча Марии с Елизаветой", author: "Неизвестен", image: "images/Встреча Марии с Елизаветой.jpg", no_author: true, title_aliases: ["Встреча Марии с Елизаветой"], author_aliases: ["Неизвестен"] },
+  { title: "Собор Святого Петра в Ватикане", author: "Неизвестен", image: "images/Собор Святого Петра в Ватикане.jpg", no_author: true, title_aliases: ["Собор Святого Петра в Ватикане", "Собор Святого Петра"], author_aliases: ["Неизвестен"] },
+  { title: "Сиенский собор", author: "Неизвестен", image: "images/Сиенский собор.jpg", no_author: true, title_aliases: ["Сиенский собор"], author_aliases: ["Неизвестен"] },
+  { title: "Миланский собор", author: "Неизвестен", image: "images/Миланский собор.jpg", no_author: true, title_aliases: ["Миланский собор"], author_aliases: ["Неизвестен"] },
+  { title: "Санта Мария дель Фьоре", author: "Неизвестен", image: "images/Санта Мария дель Фьоре.jpg", no_author: true, title_aliases: ["Санта Мария дель Фьоре"], author_aliases: ["Неизвестен"] },
+  { title: "Мозаика Александра Македонского", author: "Неизвестен", image: "images/Мозаика Александра Македонского.jpg", no_author: true, title_aliases: ["Мозаика Александра Македонского"], author_aliases: ["Неизвестен"] },
+  { title: "Санта Мария дела Салюте", author: "Неизвестен", image: "images/Санта Мария дела Салюте.jpg", no_author: true, title_aliases: ["Санта Мария дела Салюте"], author_aliases: ["Неизвестен"] },
+  { title: "Замок Фонтебло", author: "Неизвестен", image: "images/Замок Фонтебло.jpg", no_author: true, title_aliases: ["Замок Фонтебло"], author_aliases: ["Неизвестен"] },
+  { title: "Эскориал", author: "Неизвестен", image: "images/Эскориал.jpg", no_author: true, title_aliases: ["Эскориал"], author_aliases: ["Неизвестен"] },
+  { title: "Версальский дворец", author: "Неизвестен", image: "images/Версальский дворец.jpg", no_author: true, title_aliases: ["Версальский дворец"], author_aliases: ["Неизвестен"] },
+  { title: "Триумфльная арка", author: "Неизвестен", image: "images/Триумфльная арка.jpg", no_author: true, title_aliases: ["Триумфльная арка"], author_aliases: ["Неизвестен"] },
+  { title: "Дворец Сан Суси", author: "Неизвестен", image: "images/Дворец Сан Суси.jpg", no_author: true, title_aliases: ["Дворец Сан Суси"], author_aliases: ["Неизвестен"] },
+  { title: "Дворец Дожей", author: "Неизвестен", image: "images/Дворец Дожей.jpg", no_author: true, title_aliases: ["Дворец Дожей"], author_aliases: ["Неизвестен"] },
+  { title: "Пьяцца Навона", author: "Неизвестен", image: "images/Пьяцца Навона.jpg", no_author: true, title_aliases: ["Пьяцца Навона"], author_aliases: ["Неизвестен"] },
+  { title: "Замок Шамбор", author: "Неизвестен", image: "images/Замок Шамбор.jpg", no_author: true, title_aliases: ["Замок Шамбор"], author_aliases: ["Неизвестен"] },
+  { title: "Мон Сен Мишель", author: "Неизвестен", image: "images/Мон Сен Мишель.jpg", no_author: true, title_aliases: ["Мон Сен Мишель"], author_aliases: ["Неизвестен"] },
+  { title: "Саграда Фамилия", author: "Неизвестен", image: "images/Саграда Фамилия.jpg", no_author: true, title_aliases: ["Саграда Фамилия"], author_aliases: ["Неизвестен"] }
+];
+
+// ── СОСТОЯНИЕ ──
+let queue = [], idx = 0, score = 0, mode = 'quiz', answered = false;
+
+function norm(s) { return s.trim().toLowerCase(); }
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function goMenu() { show('screen-menu'); }
+
+function pay() {
+  if (window.Telegram && Telegram.WebApp) {
+    Telegram.WebApp.sendData(JSON.stringify({ action: 'pay' }));
+  } else {
+    alert('Оплата доступна только в Telegram');
+  }
+}
+
+function startMode(m) {
+  mode = m;
+  const all = shuffle(ARTWORKS);
+  queue = m === 'quiz' ? all.slice(0, 5) : all;
+  idx = 0; score = 0;
+  loadQuestion();
+  show('screen-quiz');
+}
+
+function loadQuestion() {
+  answered = false;
+  const aw = queue[idx];
+  const total = queue.length;
+  const num = idx + 1;
+
+  document.getElementById('progress-label').textContent = `Вопрос ${num} / ${total}`;
+  document.getElementById('progress-fill').style.width = `${(num / total) * 100}%`;
+
+  // Картинка
+  const img = document.getElementById('artwork-img');
+  const placeholder = document.getElementById('artwork-placeholder');
+  document.getElementById('artwork-hint').textContent = aw.title;
+  img.classList.remove('loaded');
+  if (aw.image) {
+    img.onload = () => { img.classList.add('loaded'); placeholder.style.display = 'none'; };
+    img.onerror = () => { placeholder.style.display = 'flex'; };
+    img.src = aw.image;
+    placeholder.style.display = 'none';
+  } else {
+    img.src = '';
+    placeholder.style.display = 'flex';
+  }
+
+  document.getElementById('quiz-q-label').textContent = aw.no_author
+    ? 'Как называется это произведение?'
+    : 'Что это за произведение и кто его автор?';
+
+  const input = document.getElementById('answer-input');
+  input.value = '';
+  input.placeholder = aw.no_author ? 'Название' : 'Название — Автор';
+
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback';
+
+  document.getElementById('submit-btn').style.display = 'block';
+  const nb = document.getElementById('next-btn');
+  nb.classList.remove('visible');
+  nb.textContent = idx + 1 < queue.length ? 'Следующий →' : 'Посмотреть результат →';
+
+  setTimeout(() => input.focus(), 100);
+}
+
+function checkAnswer() {
+  if (answered) return;
+  answered = true;
+
+  const aw = queue[idx];
+  const raw = norm(document.getElementById('answer-input').value);
+  if (!raw) { answered = false; return; }
+
+  const sep = raw.includes('—') ? '—' : (raw.includes('-') ? '-' : null);
+  const parts = sep ? raw.split(sep).map(p => p.trim()) : [raw];
+
+  const correctTitles = aw.title_aliases || [norm(aw.title)];
+  const correctAuthors = aw.author_aliases || [norm(aw.author)];
+
+  const titleOk = correctTitles.includes(parts[0]);
+  const authorOk = aw.no_author ? true : (parts[1] !== undefined && correctAuthors.includes(parts[1]));
+  const correctAnswer = aw.no_author ? aw.title : `${aw.title} — ${aw.author}`;
+
+  const fb = document.getElementById('feedback');
+  const ft = document.getElementById('feedback-title');
+  const fb2 = document.getElementById('feedback-body');
+
+  if (titleOk && authorOk) {
+    score++;
+    fb.className = 'feedback correct';
+    ft.textContent = '✓ Верно!';
+    fb2.textContent = correctAnswer;
+  } else if (titleOk && !aw.no_author) {
+    fb.className = 'feedback partial';
+    ft.textContent = 'Название верное, автор — нет';
+    fb2.textContent = correctAnswer;
+  } else if (!titleOk && authorOk && !aw.no_author) {
+    fb.className = 'feedback partial';
+    ft.textContent = 'Автор верный, название — нет';
+    fb2.textContent = correctAnswer;
+  } else {
+    fb.className = 'feedback wrong';
+    ft.textContent = '✗ Неверно';
+    fb2.textContent = correctAnswer;
+  }
+
+  document.getElementById('submit-btn').style.display = 'none';
+  document.getElementById('next-btn').classList.add('visible');
+}
+
+function nextQuestion() {
+  idx++;
+  if (idx < queue.length) {
+    loadQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  const total = queue.length;
+  const pct = total > 0 ? score / total : 0;
+  let emoji, title, sub;
+  if (pct === 1)       { emoji = '🏆'; title = 'Блестяще!';       sub = 'Все ответы верны'; }
+  else if (pct >= 0.7) { emoji = '👍'; title = 'Хорошо!';         sub = 'Почти всё верно'; }
+  else if (pct >= 0.4) { emoji = '😊'; title = 'Неплохо';         sub = 'Есть куда расти'; }
+  else                 { emoji = '😅'; title = 'В следующий раз'; sub = 'Попробуй ещё раз'; }
+
+  document.getElementById('result-emoji').textContent = emoji;
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-subtitle').textContent = sub;
+  document.getElementById('result-score-num').textContent = `${score}/${total}`;
+  document.getElementById('result-mode-label').textContent = mode === 'quiz' ? 'Викторина' : 'Марафон';
+  show('screen-result');
+}
+
+// ── TELEGRAM WEB APP INIT ──
+if (window.Telegram && Telegram.WebApp) {
+  Telegram.WebApp.ready();
+  Telegram.WebApp.expand();
+}
+</script>
+</body>
+</html>

@@ -198,7 +198,7 @@
     {
         "title": "Дорифор ",
         "author": "Поликлет",
-        "image": "images/Дорифор .jpg",
+        "image": "images/Дорифор.jpg",
         "title_aliases": [ "Дорифор " ],
         "author_aliases": [ "Поликлет" ]
     },
@@ -212,7 +212,7 @@
     {
         "title": "Мадонна в скалах",
         "author": "Леонардо Да Винчи",
-        "image": "images/Мадонна в скалах.jpg",
+        "image": "images/Мадонна в скалах (Леонардо Да Винчи).jpg",
         "title_aliases": [ "Мадонна в скалах" ],
         "author_aliases": [ "Леонардо Да Винчи", "Да Винчи" ]
     },
@@ -355,6 +355,349 @@
         "image": "images/Весна (Джузеппе Арчимбольдо).jpg",
         "title_aliases": [ "Весна" ],
         "author_aliases": [ "Джузеппе Арчимбольдо" ]
+    },
+    {
+        "title": "Охотники на снегу",
+        "author": "Питер Брейгель старший",
+        "image": "images/Охотники на снегу (Питер Брейгель старший).jpg",
+        "title_aliases": [ "Охотники на снегу" ],
+        "author_aliases": [ "Питер Брейгель старший", "Питер Брейгель", "Брейгель" ]
+    },
+    {
+        "title": "Битва масленицы и поста",
+        "author": "Питер Брейгель старший",
+        "image": "images/Битва масленицы и поста (Питер Брейгель старший).jpg",
+        "title_aliases": [ "Битва масленицы и поста" ],
+        "author_aliases": [ "Питер Брейгель старший", "Питер Брейгель", "Брейгель" ]
+    },
+    {
+        "title": "Четыре всадника апокалипсиса",
+        "author": "Альбрехт Дюрер",
+        "image": "images/Четыре всадника апокалипсиса (Альбрехт Дюрер).jpg",
+        "title_aliases": [ "Четыре всадника апокалипсиса" ],
+        "author_aliases": [ "Альбрехт Дюрер" ]
+    },
+    {
+        "title": "Меланхолия",
+        "author": "Альбрехт Дюрер",
+        "image": "images/Меланхолия (Альбрехт Дюрер).jpg",
+        "title_aliases": [ "Меланхолия" ],
+        "author_aliases": [ "Альбрехт Дюрер" ]
+    },
+    {
+        "title": "Заяц",
+        "author": "Альбрехт Дюрер",
+        "image": "images/Заяц (Альбрехт Дюрер).jpg",
+        "title_aliases": [ "Заяц" ],
+        "author_aliases": [ "Альбрехт Дюрер" ]
+    },
+    {
+        "title": "Лютнист",
+        "author": "Караваджо",
+        "image": "images/Лютнист (Караваджо).jpg",
+        "title_aliases": [ "Лютнист" ],
+        "author_aliases": [ "Караваджо" ]
+    },
+    {
+        "title": "Корзина с фруктами",
+        "author": "Караваджо",
+        "image": "images/Корзина с фруктами (Караваджо).jpg",
+        "title_aliases": [ "Корзина с фруктами" ],
+        "author_aliases": [ "Караваджо" ]
+    },
+    {
+        "title": "Шулеры",
+        "author": "Караваджо",
+        "image": "images/Шулеры (Караваджо).jpg",
+        "title_aliases": [ "Шулеры" ],
+        "author_aliases": [ "Караваджо" ]
+    },
+    {
+        "title": "Автопортрет 1500",
+        "author": "Альбрехт Дюрер",
+        "image": "images/Автопортрет 1500 (Альбрехт Дюрер).jpg",
+        "title_aliases": [ "Автопортрет 1500", "Автопортрет", "Автопортрет 1500 г", "Автопортрет 1500 год" ],
+        "author_aliases": [ "Альбрехт Дюрер" ]
+    },
+    {
+        "title": "Автопортрет 1498",
+        "author": "Альбрехт Дюрер",
+        "image": "images/Автопортрет 1498 (Альбрехт Дюрер).jpg",
+        "title_aliases": [ "Автопортрет 1498", "Автопортрет", "Автопортрет 1498 г", "Автопортрет 1498 год" ],
+        "author_aliases": [ "Альбрехт Дюрер" ]
+    },
+    {
+        "title": "Давид",
+        "author": "Бернини",
+        "image": "images/Давид (Бернини).jpg",
+        "title_aliases": [ "Давид" ],
+        "author_aliases": [ "Бернини" ]
+    },
+    {
+        "title": "Бюст Людовига 14",
+        "author": "Бернини",
+        "image": "images/Бюст Людовига 14 (Бернини).jpg",
+        "title_aliases": [ "Бюст Людовига 14" ],
+        "author_aliases": [ "Бернини" ]
+    },
+    {
+        "title": "Экстаз Святой Терезы (Бернини)",
+        "author": "Бернини",
+        "image": "images/Экстаз Святой Терезы (Бернини).jpg",
+        "title_aliases": [ "Экстаз Святой Терезы" ],
+        "author_aliases": [ "Бернини" ]
+    },
+    {
+        "title": "Аполлон и Дафна",
+        "author": "Бернини",
+        "image": "images/Аполлон и Дафна (Бернини).jpg",
+        "title_aliases": [ "Аполлон и Дафна" ],
+        "author_aliases": [ "Бернини" ]
+    },
+    {
+        "title": "Вид Толедо в грозу",
+        "author": "Эль Греко",
+        "image": "images/Вид Толедо в грозу (Эль Греко).jpg",
+        "title_aliases": [ "Вид Толедо в грозу" ],
+        "author_aliases": [ "Эль Греко" ]
+    },
+    {
+        "title": "Апостол Пётр и Павел",
+        "author": "Эль Греко",
+        "image": "images/Апостол Пётр и Павел (Эль Греко).jpg",
+        "title_aliases": [ "Апостол Пётр и Павел" ],
+        "author_aliases": [ "Эль Греко" ]
+    },
+    {
+        "title": "Персей освобождает Андромеду(Рубенс)",
+        "author": "Рубенс",
+        "image": "images/Персей освобождает Андромеду(Рубенс).jpg",
+        "title_aliases": [ "Персей освобождает Андромеду" ],
+        "author_aliases": [ "Рубенс" ]
+    },
+    {
+        "title": "Автопортрет с Изабеллой Брант",
+        "author": "Рубенс",
+        "image": "images/Автопортрет с Изабеллой Брант (Рубенс).jpg",
+        "title_aliases": [ "Автопортрет с Изабеллой Брант", "Автопортрет с Изабелой Брант" ],
+        "author_aliases": [ "Рубенс" ]
+    },
+    {
+        "title": "Коронация Марии Медичи",
+        "author": "Рубенс",
+        "image": "images/Коронация Марии Медичи (Рубенс).jpg",
+        "title_aliases": [ "Коронация Марии Медичи" ],
+        "author_aliases": [ "Рубенс" ]
+    },
+    {
+        "title": "Ночной дозор",
+        "author": "Рембрандт",
+        "image": "images/Ночной дозор (Рембрандт).jpg",
+        "title_aliases": [ "Ночной дозор" ],
+        "author_aliases": [ "Рембрандт" ]
+    },
+    {
+        "title": "Автопортрет с Саскией на коленях",
+        "author": "Рембрандт",
+        "image": "images/Автопортрет с Саскией на коленях (Рембрандт).jpg",
+        "title_aliases": [ "Автопортрет с Саскией на коленях", "Автопортрет с Саскией" ],
+        "author_aliases": [ "Рембрандт" ]
+    },
+    {
+        "title": "Флора",
+        "author": "Рембрандт",
+        "image": "images/Флора (Рембрандт).jpg",
+        "title_aliases": [ "Флора" ],
+        "author_aliases": [ "Рембрандт" ]
+    },
+    {
+        "title": "Возвращение блудного сына",
+        "author": "Рембрандт",
+        "image": "images/Возвращение блудного сына (Рембрандт).jpg",
+        "title_aliases": [ "Возвращение блудного сына" ],
+        "author_aliases": [ "Рембрандт" ]
+    },
+    {
+        "title": "Портрет старика в красном",
+        "author": "Рембрандт",
+        "image": "images/Портрет старика в красном (Рембрандт).jpg",
+        "title_aliases": [ "Портрет старика в красном" ],
+        "author_aliases": [ "Рембрандт" ]
+    },
+    {
+        "title": "Молочница",
+        "author": "Вермеер",
+        "image": "images/Молочница (Вермеер).jpg",
+        "title_aliases": [ "Молочница" ],
+        "author_aliases": [ "Вермеер" ]
+    },
+    {
+        "title": "Девушка с жемчужной серёжкой",
+        "author": "Вермеер",
+        "image": "images/Девушка с жемчужной серёжкой (Вермеер).jpg",
+        "title_aliases": [ "Девушка с жемчужной серёжкой" ],
+        "author_aliases": [ "Вермеер" ]
+    },
+    {
+        "title": "Девушка читающая у окна",
+        "author": "Вермеер",
+        "image": "images/Девушка читающая у окна (Вермеер).jpg",
+        "title_aliases": [ "Девушка читающая у окна" ],
+        "author_aliases": [ "Вермеер" ]
+    },
+    {
+        "title": "Вид Дельфта",
+        "author": "Вермеер",
+        "image": "images/Вид Дельфта (Вермеер).jpg",
+        "title_aliases": [ "Вид Дельфта" ],
+        "author_aliases": [ "Вермеер" ]
+    },
+    {
+        "title": "Меницы",
+        "author": "Веласкес",
+        "image": "images/Меницы (Веласкес).jpg",
+        "title_aliases": [ "Меницы" ],
+        "author_aliases": [ "Веласкес" ]
+    },
+    {
+        "title": "Инфанта Маргарита",
+        "author": "Веласкес",
+        "image": "images/Инфанта Маргарита (Веласкес).jpg",
+        "title_aliases": [ "Инфанта Маргарита" ],
+        "author_aliases": [ "Веласкес" ]
+    },
+    {
+        "title": "Портрет Папы Иннокентия 10",
+        "author": "Веласкес",
+        "image": "images/Портрет Папы Иннокентия 10 (Веласкес).jpg",
+        "title_aliases": [ "Портрет Папы Иннокентия 10" ],
+        "author_aliases": [ "Веласкес" ]
+    },
+    {
+        "title": "Портрет Себастьяна Моро",
+        "author": "Веласкес",
+        "image": "images/Портрет Себастьяна Моро (Веласкес).jpg",
+        "title_aliases": [ "Портрет Себастьяна Моро" ],
+        "author_aliases": [ "Веласкес" ]
+    },
+    {
+        "title": "Завтрак",
+        "author": "Веласкес",
+        "image": "images/Завтрак (Веласкес).jpg",
+        "title_aliases": [ "Завтрак" ],
+        "author_aliases": [ "Веласкес" ]
+    },
+    {
+        "title": "Общество в парке",
+        "author": "Антуан Ватто",
+        "image": "images/Общество в парке (Антуан Ватто).jpg",
+        "title_aliases": [ "Общество в парке" ],
+        "author_aliases": [ "Антуан Ватто", "Ватто", "Антуан Вато", "Вато" ]
+    },
+    {
+        "title": "Портрет мадам Пампадур",
+        "author": "Антуан Ватто",
+        "image": "images/Портрет мадам Пампадур (Антуан Ватто).jpg",
+        "title_aliases": [ "Портрет мадам Пампадур", "Портрет Пампадур" ],
+        "author_aliases": [ "Антуан Ватто", "Ватто", "Антуан Вато", "Вато" ]
+    },
+    {
+        "title": "Пастушеская сцена",
+        "author": "Франсуа Буше",
+        "image": "images/Пастушеская сцена (Франсуа Буше).jpg",
+        "title_aliases": [ "Пастушеская сцена" ],
+        "author_aliases": [ "Франсуа Буше", "Буше" ]
+    },
+    {
+        "title": "Клятва горациев",
+        "author": "Жак луи Давид",
+        "image": "images/Клятва горациев (Жак луи Давид).jpg",
+        "title_aliases": [ "Клятва горациев" ],
+        "author_aliases": [ "Жак луи Давид" ]
+    },
+    {
+        "title": "Наполеон на императорском троне",
+        "author": "Жак луи Давид",
+        "image": "images/Наполеон на императорском троне (Жак луи Давид).jpg",
+        "title_aliases": [ "Наполеон на императорском троне" ],
+        "author_aliases": [ "Жак луи Давид" ]
+    },
+    {
+        "title": "Прачка",
+        "author": "Жан Батист Шарден",
+        "image": "images/Прачка (Жан Батист Шарден).jpg",
+        "title_aliases": [ "Прачка" ],
+        "author_aliases": [ "Жан Батист Шарден" ]
+    },
+    {
+        "title": "Молитва перед обедом",
+        "author": "Жан Батист Шарден",
+        "image": "images/Молитва перед обедом (Жан Батист Шарден).jpg",
+        "title_aliases": [ "Молитва перед обедом" ],
+        "author_aliases": [ "Жан Батист Шарден" ]
+    },
+    {
+        "title": "Моисей",
+        "author": "Микеланджело",
+        "image": "images/Моисей (Микеланджело).jpg",
+        "title_aliases": [ "Моисей" ],
+        "author_aliases": [ "Микеланджело" ]
+    },
+    {
+        "title": "",
+        "author": "",
+        "image": "images/.jpg",
+        "title_aliases": [ "" ],
+        "author_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "",
+        "image": "images/.jpg",
+        "title_aliases": [ "" ],
+        "author_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "",
+        "image": "images/.jpg",
+        "title_aliases": [ "" ],
+        "author_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "",
+        "image": "images/.jpg",
+        "title_aliases": [ "" ],
+        "author_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "",
+        "image": "images/.jpg",
+        "title_aliases": [ "" ],
+        "author_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "",
+        "image": "images/.jpg",
+        "title_aliases": [ "" ],
+        "author_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "",
+        "image": "images/.jpg",
+        "title_aliases": [ "" ],
+        "author_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "",
+        "image": "images/.jpg",
+        "title_aliases": [ "" ],
+        "author_aliases": [ "" ]
     },
     {
         "title": "",
@@ -502,6 +845,181 @@
         "image": "images/Санта Мария дела Салюте.jpg",
         "no_author": true,
         "title_aliases": [ "Санта Мария дела Салюте" ]
+    },
+    {
+        "title": "Замок Фонтебло",
+        "author": "Неизвестен",
+        "image": "images/Замок Фонтебло.jpg",
+        "no_author": true,
+        "title_aliases": [ "Замок Фонтебло" ]
+    },
+    {
+        "title": "Эскориал",
+        "author": "Неизвестен",
+        "image": "images/Эскориал.jpg",
+        "no_author": true,
+        "title_aliases": [ "Эскориал" ]
+    },
+    {
+        "title": "Версальский дворец",
+        "author": "Неизвестен",
+        "image": "images/Версальский дворец.jpg",
+        "no_author": true,
+        "title_aliases": [ "Версальский дворец" ]
+    },
+    {
+        "title": "Триумфльная арка",
+        "author": "Неизвестен",
+        "image": "images/Триумфльная арка.jpg",
+        "no_author": true,
+        "title_aliases": [ "Триумфльная арка" ]
+    },
+    {
+        "title": "Дворец Сан Суси",
+        "author": "Неизвестен",
+        "image": "images/Дворец Сан Суси.jpg",
+        "no_author": true,
+        "title_aliases": [ "Дворец Сан Суси" ]
+    },
+    {
+        "title": "Дворец Дожей",
+        "author": "Неизвестен",
+        "image": "images/Дворец Дожей.jpg",
+        "no_author": true,
+        "title_aliases": [ "Дворец Дожей" ]
+    },
+    {
+        "title": "Пьяцца Навона",
+        "author": "Неизвестен",
+        "image": "images/Пьяцца Навона.jpg",
+        "no_author": true,
+        "title_aliases": [ "Пьяцца Навона" ]
+    },
+    {
+        "title": "Замок Шамбор",
+        "author": "Неизвестен",
+        "image": "images/Замок Шамбор.jpg",
+        "no_author": true,
+        "title_aliases": [ "Замок Шамбор" ]
+    },
+    {
+        "title": "Мон Сен Мишель",
+        "author": "Неизвестен",
+        "image": "images/Мон Сен Мишель.jpg",
+        "no_author": true,
+        "title_aliases": [ "Мон Сен Мишель" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
+    },
+    {
+        "title": "",
+        "author": "Неизвестен",
+        "image": "images/.jpg",
+        "no_author": true,
+        "title_aliases": [ "" ]
     },
     {
         "title": "",

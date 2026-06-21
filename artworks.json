@@ -644,74 +644,340 @@
         "author_aliases": [ "Микеланджело" ]
     },
     {
-        "title": "",
-        "author": "",
-        "image": "images/.jpg",
-        "title_aliases": [ "" ],
-        "author_aliases": [ "" ]
+        "title": "Капризница",
+        "author": "Антуан Ватто",
+        "image": "images/Капризница (Антуан Ватто).jpg",
+        "title_aliases": [ "Капризница" ],
+        "author_aliases": [ "Антуан Ватто" ]
     },
     {
-        "title": "",
-        "author": "",
-        "image": "images/.jpg",
-        "title_aliases": [ "" ],
-        "author_aliases": [ "" ]
+        "title": "Жиль",
+        "author": "Антуан Ватто",
+        "image": "images/Жиль (Антуан Ватто).jpg",
+        "title_aliases": [ "Жиль" ],
+        "author_aliases": [ "Антуан Ватто" ]
     },
     {
-        "title": "",
-        "author": "",
-        "image": "images/.jpg",
-        "title_aliases": [ "" ],
-        "author_aliases": [ "" ]
+        "title": "Паралитик",
+        "author": "Жан Батист Грёз",
+        "image": "images/Паралитик (Жан Батист Грёз).jpg",
+        "title_aliases": [ "Паралитик" ],
+        "author_aliases": [ "Жан Батист Грёз" ]
     },
     {
-        "title": "",
-        "author": "",
-        "image": "images/.jpg",
-        "title_aliases": [ "" ],
-        "author_aliases": [ "" ]
+        "title": "Балованное дитя",
+        "author": "Жан Батист Грёз",
+        "image": "images/Балованное дитя (Жан Батист Грёз).jpg",
+        "title_aliases": [ "Балованное дитя" ],
+        "author_aliases": [ "Жан Батист Грёз" ]
     },
     {
-        "title": "",
-        "author": "",
-        "image": "images/.jpg",
-        "title_aliases": [ "" ],
-        "author_aliases": [ "" ]
+        "title": "Маха одетая",
+        "author": "Франсиско Гойя",
+        "image": "images/Маха одетая (Франсиско Гойя).jpg",
+        "title_aliases": [ "Маха одетая" ],
+        "author_aliases": [ "Франсиско Гойя" ]
     },
     {
-        "title": "",
-        "author": "",
-        "image": "images/.jpg",
-        "title_aliases": [ "" ],
-        "author_aliases": [ "" ]
+        "title": "Портрет актрисы Антонии Сарате",
+        "author": "Франсиско Гойя",
+        "image": "images/Портрет актрисы Антонии Сарате (Франсиско Гойя).jpg",
+        "title_aliases": [ "Портрет актрисы Антонии Сарате", "Портрет Антонии Сарате" ],
+        "author_aliases": [ "Франсиско Гойя" ]
     },
     {
-        "title": "",
-        "author": "",
-        "image": "images/.jpg",
-        "title_aliases": [ "" ],
-        "author_aliases": [ "" ]
+        "title": "Портрет семьи Карла 4",
+        "author": "Франсиско Гойя",
+        "image": "images/Портрет семьи Карла 4 (Франсиско Гойя).jpg",
+        "title_aliases": [ "Портрет семьи Карла 4", "Портрет семьи Карла четвёртого" ],
+        "author_aliases": [ "Франсиско Гойя" ]
     },
     {
-        "title": "",
-        "author": "",
-        "image": "images/.jpg",
-        "title_aliases": [ "" ],
-        "author_aliases": [ "" ]
+        "title": "Сон разума рождает чудовищ",
+        "author": "Франсиско Гойя",
+        "image": "images/Сон разума рождает чудовищ (Франсиско Гойя).jpg",
+        "title_aliases": [ "Сон разума рождает чудовищ" ],
+        "author_aliases": [ "Франсиско Гойя" ]
     },
     {
-        "title": "",
-        "author": "",
-        "image": "images/.jpg",
-        "title_aliases": [ "" ],
-        "author_aliases": [ "" ]
+        "title": "Серия капричос",
+        "author": "Франсиско Гойя",
+        "image": "images/Серия капричос (Франсиско Гойя).jpg",
+        "title_aliases": [ "Серия капричос" ],
+        "author_aliases": [ "Франсиско Гойя" ]
     },
     {
-        "title": "",
-        "author": "",
-        "image": "images/.jpg",
-        "title_aliases": [ "" ],
-        "author_aliases": [ "" ]
+        "title": "Махи на балконе",
+        "author": "Франсиско Гойя",
+        "image": "images/Махи на балконе (Франсиско Гойя).jpg",
+        "title_aliases": [ "Махи на балконе" ],
+        "author_aliases": [ "Франсиско Гойя" ]
+    },
+    {
+        "title": "3 мая 1808 года в Мадриде",
+        "author": "Франсиско Гойя",
+        "image": "images/Расстрел повстанцев в ночь на 3 мая 1808 года (Франсиско Гойя).jpg",
+        "title_aliases": [ "Расстрел повстанцев в ночь на 3 мая 1808 года", "3 мая 1808 года в Мадриде" ],
+        "author_aliases": [ "Франсиско Гойя" ]
+    },
+    {
+        "title": "Разносчица воды",
+        "author": "Франсиско Гойя",
+        "image": "images/Разносчица воды (Франсиско Гойя).jpg",
+        "title_aliases": [ "Разносчица воды" ],
+        "author_aliases": [ "Франсиско Гойя" ]
+    },
+    {
+        "title": "Крест в горах",
+        "author": "Фридрих",
+        "image": "images/Крест в горах Теченский алтарь (Фридрих).jpg",
+        "title_aliases": [ "Крест в горах", "Теченский алтарь" ],
+        "author_aliases": [ "Фридрих" ]
+    },
+    {
+        "title": "Резня на Хиосе",
+        "author": "Делакруа",
+        "image": "images/Резня на Хиосе (Делакруа).jpg",
+        "title_aliases": [ "Резня на Хиосе" ],
+        "author_aliases": [ "Делакруа" ]
+    },
+    {
+        "title": "Марокканец седлающий коня",
+        "author": "Делакруа",
+        "image": "images/Марокканец седлающий коня (Делакруа).jpg",
+        "title_aliases": [ "Марокканец седлающий коня" ],
+        "author_aliases": [ "Делакруа" ]
+    },
+    {
+        "title": "Свобода на баррикадах",
+        "author": "Делакруа",
+        "image": "images/Свобода на баррикадах (Делакруа).jpg",
+        "title_aliases": [ "Свобода на баррикадах" ],
+        "author_aliases": [ "Делакруа" ]
+    },
+    {
+        "title": "Завтрак на траве",
+        "author": "Эдуард Мане",
+        "image": "images/Завтрак на траве (Эдуард Мане).jpg",
+        "title_aliases": [ "Завтрак на траве" ],
+        "author_aliases": [ "Эдуард Мане", "Мане" ]
+    },
+    {
+        "title": "Лола из Валенсии",
+        "author": "Эдуард Мане",
+        "image": "images/Лола из Валенсии (Эдуард Мане).jpg",
+        "title_aliases": [ "Лола из Валенсии" ],
+        "author_aliases": [ "Эдуард Мане", "Мане" ]
+    },
+    {
+        "title": "Балкон",
+        "author": "Эдуард Мане",
+        "image": "images/Балкон (Эдуард Мане).jpg",
+        "title_aliases": [ "Балкон" ],
+        "author_aliases": [ "Эдуард Мане", "Мане" ]
+    },
+    {
+        "title": "Бал маскарад в опере",
+        "author": "Эдуард Мане",
+        "image": "images/Бал маскарад в опере (Эдуард Мане).jpg",
+        "title_aliases": [ "Бал маскарад в опере" ],
+        "author_aliases": [ "Эдуард Мане", "Мане" ]
+    },
+    {
+        "title": "В лодке",
+        "author": "Эдуард Мане",
+        "image": "images/В лодке (Эдуард Мане).jpg",
+        "title_aliases": [ "В лодке" ],
+        "author_aliases": [ "Эдуард Мане", "Мане" ]
+    },
+    {
+        "title": "Бар в Фоли Бержер",
+        "author": "Эдуард Мане",
+        "image": "images/Бар в Фоли Бержер (Эдуард Мане).jpg",
+        "title_aliases": [ "Бар в Фоли Бержер" ],
+        "author_aliases": [ "Эдуард Мане", "Мане" ]
+    },
+    {
+        "title": "Дождь пар и скорость",
+        "author": "Уильям Тёрнер",
+        "image": "images/Дождь пар и скорость (Уильям Тёрнер).jpg",
+        "title_aliases": [ "Дождь пар и скорость" ],
+        "author_aliases": [ "Уильям Тёрнер", "Вильям Тёрнер" ]
+    },
+    {
+        "title": "Плот медузы",
+        "author": "Теодор Жерико",
+        "image": "images/Плот медузы (Теодор Жерико).jpg",
+        "title_aliases": [ "Плот медузы" ],
+        "author_aliases": [ "Теодор Жерико" ]
+    },
+    {
+        "title": "Персики и груши",
+        "author": "Поль Сезанн",
+        "image": "images/Персики и груши (Поль Сезанн).jpg",
+        "title_aliases": [ "Персики и груши" ],
+        "author_aliases": [ "Поль Сезанн" ]
+    },
+    {
+        "title": "Пьеро и Арлекин",
+        "author": "Поль Сезанн",
+        "image": "images/Пьеро и Арлекин (Поль Сезанн).jpg",
+        "title_aliases": [ "Пьеро и Арлекин" ],
+        "author_aliases": [ "Поль Сезанн" ]
+    },
+    {
+        "title": "Автопортрет",
+        "author": "Поль Сезанн",
+        "image": "images/Автопортрет (Поль Сезанн).jpg",
+        "title_aliases": [ "Автопортрет" ],
+        "author_aliases": [ "Поль Сезанн" ]
+    },
+    {
+        "title": "Гора Сент Виктуар",
+        "author": "Поль Сезанн",
+        "image": "images/Гора Сент Виктуар (Поль Сезанн).jpg",
+        "title_aliases": [ "Гора Сент Виктуар", "Гора Сент Вектуар" ],
+        "author_aliases": [ "Поль Сезанн" ]
+    },
+    {
+        "title": "Таитянские пасторали",
+        "author": "Поль Гоген",
+        "image": "images/Таитянские пасторали (Поль Гоген).jpg",
+        "title_aliases": [ "Таитянские пасторали" ],
+        "author_aliases": [ "Поль Гоген" ]
+    },
+    {
+        "title": "Ареареа",
+        "author": "Поль Гоген",
+        "image": "images/Ареареа (Поль Гоген).jpg",
+        "title_aliases": [ "Ареареа" ],
+        "author_aliases": [ "Поль Гоген" ]
+    },
+    {
+        "title": "Звёздная ночь",
+        "author": "Ван Гог",
+        "image": "images/Звёздная ночь (Ван Гог).jpg",
+        "title_aliases": [ "Звёздная ночь" ],
+        "author_aliases": [ "Ван Гог" ]
+    },
+    {
+        "title": "Кафе в Арле",
+        "author": "Ван Гог",
+        "image": "images/Кафе в Арле (Ван Гог).jpg",
+        "title_aliases": [ "Кафе в Арле" ],
+        "author_aliases": [ "Ван Гог" ]
+    },
+    {
+        "title": "Впечатление. Восход солнца",
+        "author": "Клод Моне",
+        "image": "images/Впечатление. Восход солнца (Клод Моне).jpg",
+        "title_aliases": [ "Впечатление. Восход солнца", "Впечатление.Восход солнца", "Впечатление Восход солнца", "Впечатление", "Восход солнца" ],
+        "author_aliases": [ "Клод Моне" ]
+    },
+    {
+        "title": "Дикие маки близ Аржантея",
+        "author": "Клод Моне",
+        "image": "images/Дикие маки близ Аржантея (Клод Моне).jpg",
+        "title_aliases": [ "Дикие маки близ Аржантея" ],
+        "author_aliases": [ "Клод Моне" ]
+    },
+    {
+        "title": "Камилла в японском кимоно",
+        "author": "Клод Моне",
+        "image": "images/Камилла в японском кимоно (Клод Моне).jpg",
+        "title_aliases": [ "Камилла в японском кимоно", "Камила в японском кимоно", "Камилла в кимоно", "Камила в кимоно" ],
+        "author_aliases": [ "Клод Моне" ]
+    },
+    {
+        "title": "Японский мостик",
+        "author": "Клод Моне",
+        "image": "images/Японский мостик (Клод Моне).jpg",
+        "title_aliases": [ "Японский мостик" ],
+        "author_aliases": [ "Клод Моне" ]
+    },
+    {
+        "title": "Клоунесса в Мулен Руж",
+        "author": "Анри де Тулуз",
+        "image": "images/Клоунесса в Мулен руж (Анри де Тулуз).jpg",
+        "title_aliases": [ "Клоунесса в Мулен Руж", "Клоунеса в Мулен Руж" ],
+        "author_aliases": [ "Анри де Тулуз", "Тулуз" ]
+    },
+    {
+        "title": "Певица Иветт Гильбер",
+        "author": "Анри де Тулуз",
+        "image": "images/Певица Иветт Гильбер (Анри де Тулуз).jpg",
+        "title_aliases": [ "Певица Иветт Гильбер", "Иветт Гильбер" ],
+        "author_aliases": [ "Анри де Тулуз", "Тулуз" ]
+    },
+    {
+        "title": "Аристид Брюан",
+        "author": "Анри де Тулуз",
+        "image": "images/Аристид Брюан (Анри де Тулуз).jpg",
+        "title_aliases": [ "Аристид Брюан" ],
+        "author_aliases": [ "Анри де Тулуз", "Тулуз" ]
+    },
+    {
+        "title": "Человек с трубкой",
+        "author": "Пабло Пикассо",
+        "image": "images/Человек с трубкой (Пабло Пикассо).jpg",
+        "title_aliases": [ "Человек с трубкой" ],
+        "author_aliases": [ "Пабло Пикассо", "Пикассо", "Пабло Пикасо", "Пикасо" ]
+    },
+    {
+        "title": "Королева Изабо",
+        "author": "Пабло Пикассо",
+        "image": "images/Королева Изабо (Пабло Пикассо).jpg",
+        "title_aliases": [ "Королева Изабо" ],
+        "author_aliases": [ "Пабло Пикассо", "Пикассо", "Пабло Пикасо", "Пикасо" ]
+    },
+    {
+        "title": "Портрет Амбруаза Воллара",
+        "author": "Пабло Пикассо",
+        "image": "images/Портрет Амбруаза Воллара (Пабло Пикассо).jpg",
+        "title_aliases": [ "Портрет Амбруаза Воллара" ],
+        "author_aliases": [ "Пабло Пикассо", "Пикассо", "Пабло Пикасо", "Пикасо" ]
+    },
+    {
+        "title": "Красная комната",
+        "author": "Анри Матисс",
+        "image": "images/Красная комната (Анри Матисс).jpg",
+        "title_aliases": [ "Красная комната" ],
+        "author_aliases": [ "Анри Матисс" ]
+    },
+    {
+        "title": "Бульвар Монмартр",
+        "author": "Камиль Писсарро",
+        "image": "images/Бульвар Монмартр (Камиль Писсарро).jpg",
+        "title_aliases": [ "Бульвар Монмартр" ],
+        "author_aliases": [ "Камиль Писсарро", "Камиль Писаро", "Камиль Писарро", "Камиль Писсаро" ]
+    },
+    {
+        "title": "Воскресный день на острове Гранд Жатт",
+        "author": "Жорж Пьер Сёра",
+        "image": "images/Воскресный день на острове Гранд Жатт (Жорж Пьер Сёра).jpg",
+        "title_aliases": [ "Воскресный день на острове Гранд Жатт", "Воскресный день на острове Гранд Жат" ],
+        "author_aliases": [ "Жорж Пьер Сёра" ]
+    },
+    {
+        "title": "Портрет Жанны Эбютерн",
+        "author": "Амадео Модильяни",
+        "image": "images/Портрет Жанны Эбютерн (Амадео Модильяни).jpg",
+        "title_aliases": [ "Портрет Жанны Эбютерн" ],
+        "author_aliases": [ "Амадео Модильяни" ]
+    },
+    {
+        "title": "Портрет женщины в чёрном галстуке",
+        "author": "Амадео Модильяни",
+        "image": "images/Портрет женщины в чёрном галстуке (Амадео Модильяни).jpg",
+        "title_aliases": [ "Портрет женщины в чёрном галстуке" ],
+        "author_aliases": [ "Амадео Модильяни" ]
+    },
+    {
+        "title": "Выход на станции метро",
+        "author": "Гектор Гимар",
+        "image": "images/Выход на станции метро (Гектор Гимар).jpg",
+        "title_aliases": [ "Выход на станции метро" ],
+        "author_aliases": [ "Гектор Гимар", "Гимар" ]
     },
     {
         "title": "Собор Святой Софии",
@@ -910,122 +1176,10 @@
         "title_aliases": [ "Мон Сен Мишель" ]
     },
     {
-        "title": "",
         "author": "Неизвестен",
-        "image": "images/.jpg",
+        "image": "images/Саграда Фамилия.jpg",
         "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
-    },
-    {
-        "title": "",
-        "author": "Неизвестен",
-        "image": "images/.jpg",
-        "no_author": true,
-        "title_aliases": [ "" ]
+        "title": "Саграда Фамилия",
+        "title_aliases": [ "Саграда Фамилия" ]
     }
 ]

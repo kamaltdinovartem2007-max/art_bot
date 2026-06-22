@@ -1,6 +1,9 @@
 import os
 import random
 import json
+import threading
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, LabeledPrice
 from telegram.ext import (
     ApplicationBuilder,
@@ -15,9 +18,9 @@ from telegram.ext import (
 # ───────────────────────────── CONFIG ─────────────────────────────
 BOT_TOKEN = os.getenv("BOT_TOKEN", "8527530306:AAFAlkJXt0OR0bJrxuj1Rhu4I5MkTDwkGFA")
 PAYMENT_TOKEN = os.getenv("PAYMENT_TOKEN", "390540012:LIVE:98268")
+API_PORT = int(os.getenv("API_PORT", 5000))
 
 FREE_USERS = {1470728379, 1125997394}
-
 PAID_USERS_FILE = "paid_users.json"
 
 # ─────────────────────── PAID USERS ───────────────────────────────
@@ -38,6 +41,24 @@ def mark_paid(user_id: int):
     users = load_paid_users()
     users.add(user_id)
     save_paid_users(users)
+
+# ─────────────────────── FLASK API ────────────────────────────────
+flask_app = Flask(__name__)
+CORS(flask_app)  # Разрешаем запросы с GitHub Pages
+
+@flask_app.route("/check_access", methods=["GET"])
+def check_access():
+    user_id = request.args.get("user_id")
+    if not user_id:
+        return jsonify({"error": "user_id required"}), 400
+    try:
+        uid = int(user_id)
+    except ValueError:
+        return jsonify({"error": "invalid user_id"}), 400
+    return jsonify({"has_access": is_paid(uid)})
+
+def run_flask():
+    flask_app.run(host="0.0.0.0", port=API_PORT, debug=False, use_reloader=False)
 
 # ─────────────────────── LOAD ARTWORKS ────────────────────────────
 def load_artworks() -> list[dict]:
@@ -135,7 +156,7 @@ async def send_invoice(update: Update, context: ContextTypes.DEFAULT_TYPE):
         payload="subscription_1month",
         provider_token=PAYMENT_TOKEN,
         currency="RUB",
-        prices=[LabeledPrice("Подписка на 1 месяц", 10000)],  # 10000 = 100 рублей (в копейках)
+        prices=[LabeledPrice("Подписка на 1 месяц", 10000)],
     )
 
 async def pre_checkout(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -163,7 +184,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await send_invoice(update, context)
         return
 
-    # Проверка оплаты перед запуском режима
     if not is_paid(user_id):
         await query.message.reply_text(
             "🔒 Для доступа к викторине необходима подписка.\n\n"
@@ -308,6 +328,11 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # ────────────────────────── MAIN ──────────────────────────────────
 def main():
+    # Запускаем Flask API в отдельном потоке
+    flask_thread = threading.Thread(target=run_flask, daemon=True)
+    flask_thread.start()
+    print(f"Flask API запущен на порту {API_PORT}")
+
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))

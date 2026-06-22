@@ -806,9 +806,31 @@ function showResult() {
 }
 
 // ── TELEGRAM WEB APP INIT ──
+const API_URL = 'https://worker-production-0b1c.up.railway.app';
+
+async function checkAccess() {
+  if (!window.Telegram || !Telegram.WebApp) return; // в браузере не блокируем
+  const user = Telegram.WebApp.initDataUnsafe?.user;
+  if (!user) return;
+  try {
+    const res = await fetch(`${API_URL}/check_access?user_id=${user.id}`);
+    const data = await res.json();
+    if (!data.has_access) {
+      // Закрываем мини-апп и отправляем в бота для оплаты
+      Telegram.WebApp.showAlert(
+        'Для доступа к мини-приложению необходима подписка.\n\nОплати её в боте @Arteteatrebot',
+        () => Telegram.WebApp.close()
+      );
+    }
+  } catch (e) {
+    console.error('Ошибка проверки доступа:', e);
+  }
+}
+
 if (window.Telegram && Telegram.WebApp) {
   Telegram.WebApp.ready();
   Telegram.WebApp.expand();
+  checkAccess();
 }
 </script>
 </body>
